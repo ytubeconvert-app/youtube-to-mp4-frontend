@@ -1,6 +1,13 @@
 # Build output
 dist/
 
+# Media Binaries (Do NOT commit to Git)
+ffmpeg
+ffmpeg.exe
+ffprobe
+ffprobe.exe
+*.exe
+
 # Generated types and cache
 .astro/
 
