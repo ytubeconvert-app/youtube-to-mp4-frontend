@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import VideoPlayer from '../components/VideoPlayer.astro';
+import FaqAccordion, { type FaqItem } from '../components/FaqAccordion.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Convert YouTube to MP4', url: '/convert-youtube-to-mp4' }
+];
+
+const faqs: FaqItem[] = [
+  {
+    question: "How fast can I convert YouTube to MP4?",
+    answer: "Most 5 to 15 minute videos convert in under 10 to 20 seconds thanks to our distributed parallel processing nodes."
+  },
+  {
+    question: "Are there any hidden subscriptions or fees?",
+    answer: "No. The ability to convert YouTube to MP4 is 100% free and open for all permitted and fair-use video streams."
+  }
+];
+---
+
+<BaseLayout
+  title="Convert YouTube to MP4 Online in Seconds - Free & Fast"
+  description="Easily convert YouTube to MP4 online. High quality 1080p and 4K video downloads with no registration, no watermarks, and built-in player."
+  canonical="https://ytubeconvert.com/convert-youtube-to-mp4"
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero h1Title="Convert YouTube to MP4" defaultQuality="1080p" />
+  <HowItWorks />
+  <VideoPlayer />
+  <FeatureCards />
+
+  <section class="container content-section">
+    <h2>Convert YouTube to MP4 Effortlessly Online</h2>
+    <p>
+      When you want to <strong>convert YouTube to MP4</strong>, you want an interface that is clean, fast, and does what it promises without deceptive tricks. Our converter was crafted from the ground up to provide a dependable experience across all web browsers and devices.
+    </p>
+
+    <h3>Why Creators and Educators Convert YouTube to MP4</h3>
+    <p>
+      Streaming video is incredible for daily entertainment, but downloading offline MP4 files provides vital utility:
+    </p>
+    <ul>
+      <li><strong>Classrooms and Presentations:</strong> Avoid embarrassing buffering or Wi-Fi failures during major speeches or university seminars.</li>
+      <li><strong>Travel and Commuting:</strong> Enjoy high-definition video during flights, train journeys, or remote retreats without relying on cellular data.</li>
+      <li><strong>Digital Video Preservation:</strong> Ensure access to educational documentaries and Creative Commons resources even if the video is later removed or made private by its author.</li>
+    </ul>
+  </section>
+
+  <FaqAccordion items={faqs} />
+</BaseLayout>

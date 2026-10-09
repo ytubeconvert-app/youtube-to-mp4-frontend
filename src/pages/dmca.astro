@@ -1,0 +1,57 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'DMCA Policy', url: '/dmca' }
+];
+---
+
+<PageLayout
+  title="DMCA Copyright Policy & Takedown Procedure - YouTube to MP4"
+  description="Designated agent contact information and official procedures for submitting DMCA copyright infringement notices."
+  breadcrumbs={breadcrumbs}
+  canonical="https://ytubeconvert.com/dmca"
+>
+  <h1>DMCA Copyright Infringement Notice Policy</h1>
+  <p>
+    <strong>YouTube to MP4</strong> ("Service", "we", "us") respects the intellectual property rights of creators and content owners and expects our users to do the same. In compliance with the Digital Millennium Copyright Act (17 U.S.C. &sect; 512, "DMCA"), we respond promptly to valid notices of alleged copyright infringement.
+  </p>
+
+  <h2>Notice of Ephemeral Architecture</h2>
+  <p>
+    Please note that YouTube to MP4 does not host, store, or maintain any video or audio files on our servers permanently. Our system operates solely as a real-time, automated format transcode utility. Any converted files generated at the request of a user are cached ephemerally in volatile memory or temporary directories and are permanently deleted within 15 minutes.
+  </p>
+
+  <h2>Filing a DMCA Takedown Notice</h2>
+  <p>
+    If you are a copyright owner or an agent authorized to act on behalf of one, and you believe that our utility is being used in connection with materials that infringe your copyright, please submit a written notification including the following information:
+  </p>
+  <ol>
+    <li>A physical or electronic signature of a person authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.</li>
+    <li>Identification of the copyrighted work claimed to have been infringed, or, if multiple works are covered by a single notice, a representative list of such works.</li>
+    <li>Identification of the material that is claimed to be infringing or to be the subject of infringing activity, including the specific YouTube URL(s).</li>
+    <li>Information reasonably sufficient to permit us to contact you, such as your full legal name, physical mailing address, telephone number, and an active email address.</li>
+    <li>A statement that you have a good-faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law.</li>
+    <li>A statement that the information in the notification is accurate, and under penalty of perjury, that you are authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.</li>
+  </ol>
+
+  <h2>Designated Copyright Agent</h2>
+  <div class="step-card" style="margin: 1.5rem 0;">
+    <p><strong>Designated Copyright Agent:</strong></p>
+    <p>Legal & Compliance Department</p>
+    <p>YouTube to MP4 Operations</p>
+    <p>Email: <a href="mailto:ytubeconvert@gmail.com?subject=DMCA%20Notice">ytubeconvert@gmail.com</a></p>
+    <p>Response Timeline: We typically review and respond to valid DMCA requests within 24 to 48 business hours.</p>
+  </div>
+
+  <h2>URL Blacklisting and Preventive Blocking</h2>
+  <p>
+    Upon receipt of a valid notice, we will immediately configure our API gateway to block and permanently disallow conversions of the reported YouTube video URLs or full channel IDs.
+  </p>
+
+  <h2>Counter-Notification Procedure</h2>
+  <p>
+    If you believe your content was blocked by mistake or misidentification, you may submit a written counter-notification pursuant to 17 U.S.C. &sect; 512(g)(3) containing your contact details, identification of the material removed, a statement under penalty of perjury, and consent to the jurisdiction of the federal district court.
+  </p>
+</PageLayout>

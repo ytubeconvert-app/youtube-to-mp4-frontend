@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import VideoPlayer from '../components/VideoPlayer.astro';
+import FaqAccordion, { type FaqItem } from '../components/FaqAccordion.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'YouTube to MP4 Downloader', url: '/youtube-to-mp4-downloader' }
+];
+
+const faqs: FaqItem[] = [
+  {
+    question: "Where are converted videos saved after downloading?",
+    answer: "On Windows, Mac, and Android, downloaded videos appear directly in your device's default 'Downloads' folder. On iPhone and iPad, files are saved in the iOS Files app under Downloads, from where you can save directly to your Photos camera roll."
+  },
+  {
+    question: "Can I download multiple permitted videos in a day?",
+    answer: "Yes, our YouTube to MP4 downloader provides unlimited access for fair-use and creator-owned videos, with sensible per-minute rate limits to prevent automated bot abuse."
+  }
+];
+---
+
+<BaseLayout
+  title="YouTube to MP4 Downloader - Free & Safe Video Downloads"
+  description="Fast, reliable YouTube to MP4 downloader. Download YouTube videos directly to your PC, Mac, iPhone, or Android with zero watermarks."
+  canonical="https://ytubeconvert.com/youtube-to-mp4-downloader"
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero h1Title="YouTube to MP4 Downloader" defaultQuality="1080p" />
+  <HowItWorks />
+  <VideoPlayer />
+  <FeatureCards />
+
+  <section class="container content-section">
+    <h2>Secure & Fast YouTube to MP4 Downloader for Creators and Archivists</h2>
+    <p>
+      Need a fast and dependable <strong>YouTube to MP4 downloader</strong>? Our tool enables creators, teachers, and researchers to save videos directly to local storage for offline playback, flight travel, or presentations where an active internet connection is unavailable.
+    </p>
+
+    <h3>What Sets Our YouTube to MP4 Downloader Apart</h3>
+    <p>
+      Unlike traditional download tools that inject fake "Start Download" advertisements or download Trojan files disguised as videos, our interface is 100% transparent:
+    </p>
+    <ul>
+      <li><strong>Direct Media Streams:</strong> You download clean `.mp4` video files directly without wrapped installers or compressed archive passwords.</li>
+      <li><strong>No Watermarking:</strong> We never burn logos, watermarks, or overlays onto your downloaded video files.</li>
+      <li><strong>Instant In-Browser Verification:</strong> Preview your file in our integrated <a href="/youtube-to-mp4-player">YouTube to MP4 player</a> before triggering the download to verify audio clarity.</li>
+    </ul>
+  </section>
+
+  <FaqAccordion items={faqs} />
+</BaseLayout>

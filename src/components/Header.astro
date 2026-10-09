@@ -1,0 +1,192 @@
+---
+import { useTranslations, type SupportedLanguage } from '../i18n/ui';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const prefix = lang === 'en' ? '' : `/${lang}`;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <!-- Brand Logo -->
+    <a href={`${prefix || '/'}`} class="brand-link" aria-label="YouTube to MP4 Homepage">
+      <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="64" height="64" rx="16" fill="url(#headerGrad)"/>
+        <path d="M24 20 L44 32 L24 44 Z" fill="#ffffff"/>
+        <circle cx="46" cy="46" r="14" fill="#0f172a"/>
+        <path d="M46 38 L46 50 M41 45 L46 50 L51 45" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="headerGrad" x1="0" y1="0" x2="64" y2="64">
+            <stop stop-color="#ef4444"/>
+            <stop offset="1" stop-color="#7c3aed"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span>YouTube to <span class="brand-badge">MP4</span></span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" aria-label="Primary Navigation">
+      <ul class="nav-links">
+        <li><a href="/about" class="nav-link">About</a></li>
+        <li><a href="/contact" class="nav-link">Contact</a></li>
+        <li><a href={`${prefix}/youtube-to-mp4-converter`} class="nav-link">{t('nav_converter')}</a></li>
+        <li><a href={`${prefix}/youtube-to-mp4-1080p`} class="nav-link">1080p</a></li>
+        <li><a href={`${prefix}/youtube-to-mp4-player`} class="nav-link">{t('nav_player')}</a></li>
+        <li><a href={`${prefix}/faq`} class="nav-link">{t('nav_faq')}</a></li>
+        <li><a href="/blog" class="nav-link">{t('nav_blog')}</a></li>
+      </ul>
+    </nav>
+
+    <!-- Header Actions (Theme, Language, Mobile Toggle) -->
+    <div class="header-actions">
+      <LanguageSwitcher currentLang={lang} />
+
+      <!-- Dark / Light Theme Toggle Button -->
+      <button
+        id="theme-toggle"
+        class="btn-icon"
+        aria-label="Toggle light or dark theme"
+        type="button"
+        title="Toggle color theme"
+      >
+        <!-- Sun icon (shown in dark mode) -->
+        <svg id="theme-sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg id="theme-moon-icon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        id="mobile-menu-toggle"
+        class="btn-icon mobile-menu-btn"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+        type="button"
+      >
+        <svg class="hamburger-open-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="hamburger-close-icon" style="display:none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Navigation -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer" aria-hidden="true" inert>
+    <div class="container mobile-nav-inner">
+      <ul class="mobile-nav-links">
+        <li><a href="/about" class="mobile-nav-link">About Us</a></li>
+        <li><a href="/contact" class="mobile-nav-link">Contact Support</a></li>
+        <li><a href={`${prefix}/youtube-to-mp4-converter`} class="mobile-nav-link">{t('nav_converter')}</a></li>
+        <li><a href="/yt-mp3-converter" class="mobile-nav-link">YT MP3 Converter</a></li>
+        <li><a href={`${prefix}/youtube-to-mp4-1080p`} class="mobile-nav-link">1080p Full HD</a></li>
+        <li><a href={`${prefix}/youtube-to-mp4-player`} class="mobile-nav-link">{t('nav_player')}</a></li>
+        <li><a href={`${prefix}/faq`} class="mobile-nav-link">{t('nav_faq')}</a></li>
+        <li><a href="/blog" class="mobile-nav-link">{t('nav_blog')}</a></li>
+        <li><a href={`${prefix}/how-to-use`} class="mobile-nav-link">{t('nav_how_to_use')}</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  // Unified Client Controller: Theme Toggle & Mobile Navigation
+  (function() {
+    // 1. Theme Toggle Logic
+    const toggleBtn = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('theme-sun-icon');
+    const moonIcon = document.getElementById('theme-moon-icon');
+
+    function updateIcons(theme) {
+      if (!sunIcon || !moonIcon) return;
+      if (theme === 'light') {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      }
+    }
+
+    // Determine initial state
+    const initialTheme = document.documentElement.getAttribute('data-theme') || 
+      (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    updateIcons(initialTheme);
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateIcons(newTheme);
+      });
+    }
+
+    // 2. Mobile Menu Logic
+    const mobileBtn = document.getElementById('mobile-menu-toggle');
+    const mobileDrawer = document.getElementById('mobile-nav-drawer');
+    const openIcon = document.querySelector('.hamburger-open-icon');
+    const closeIcon = document.querySelector('.hamburger-close-icon');
+
+    if (mobileBtn && mobileDrawer) {
+      mobileBtn.addEventListener('click', function() {
+        // Mutually close language dropdown if open
+        const langDropdown = document.getElementById('lang-dropdown-card');
+        const langTrigger = document.getElementById('lang-trigger-btn');
+        if (langDropdown && langDropdown.classList.contains('is-open')) {
+          langDropdown.classList.remove('is-open');
+          if (langTrigger) langTrigger.setAttribute('aria-expanded', 'false');
+        }
+
+        const isOpen = mobileDrawer.classList.toggle('active');
+        mobileBtn.setAttribute('aria-expanded', String(isOpen));
+        mobileDrawer.setAttribute('aria-hidden', String(!isOpen));
+        mobileDrawer.inert = !isOpen;
+
+        if (openIcon && closeIcon) {
+          openIcon.style.display = isOpen ? 'none' : 'block';
+          closeIcon.style.display = isOpen ? 'block' : 'none';
+        }
+      });
+
+      // Close mobile menu when clicking any link
+      const links = mobileDrawer.querySelectorAll('.mobile-nav-link');
+      links.forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileDrawer.classList.remove('active');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          mobileDrawer.setAttribute('aria-hidden', 'true');
+          mobileDrawer.inert = true;
+          if (openIcon && closeIcon) {
+            openIcon.style.display = 'block';
+            closeIcon.style.display = 'none';
+          }
+        });
+      });
+    }
+  })();
+</script>

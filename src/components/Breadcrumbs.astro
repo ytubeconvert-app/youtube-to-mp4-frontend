@@ -1,0 +1,176 @@
+---
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+const siteUrl = 'https://youtubetomp4.org';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.url.startsWith('http') ? item.url : `${siteUrl}${item.url}`
+  }))
+};
+---
+
+<nav class="breadcrumbs-nav" aria-label="Breadcrumb navigation">
+  <div class="container">
+    <ol class="breadcrumbs-list">
+      {items.map((item, index) => {
+        const isFirst = index === 0;
+        const isLast = index === items.length - 1;
+        return (
+          <li class={`breadcrumb-item ${isLast ? 'is-current' : ''}`}>
+            {index > 0 && (
+              <svg
+                class="breadcrumb-separator"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            )}
+
+            {isLast ? (
+              <span class="breadcrumb-current-text" aria-current="page" title={item.name}>
+                {item.name}
+              </span>
+            ) : (
+              <a href={item.url} class="breadcrumb-link" title={item.name}>
+                {isFirst && (
+                  <svg
+                    class="breadcrumb-home-icon"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+                )}
+                <span>{item.name}</span>
+              </a>
+            )}
+          </li>
+        );
+      })}
+    </ol>
+  </div>
+</nav>
+
+<style>
+  .breadcrumbs-nav {
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(0, 0, 0, 0.015);
+    font-size: 0.825rem;
+    line-height: 1.4;
+  }
+
+  :global([data-theme="light"]) .breadcrumbs-nav {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .breadcrumbs-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  .breadcrumb-separator {
+    color: var(--text-muted);
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  .breadcrumb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.2rem 0.45rem;
+    border-radius: var(--radius-sm);
+    transition: color 0.15s ease, background-color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--accent);
+    background: var(--bg-tertiary);
+  }
+
+  .breadcrumb-home-icon {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .breadcrumb-link:hover .breadcrumb-home-icon {
+    color: var(--accent);
+  }
+
+  .breadcrumb-current-text {
+    display: inline-block;
+    color: var(--text-primary);
+    font-weight: 600;
+    padding: 0.2rem 0.45rem;
+    max-width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .breadcrumbs-nav {
+      padding: 0.5rem 0;
+    }
+
+    .breadcrumb-current-text {
+      max-width: 170px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .breadcrumb-current-text {
+      max-width: 120px;
+    }
+  }
+</style>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

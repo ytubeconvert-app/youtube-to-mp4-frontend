@@ -1,0 +1,42 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs, { type BreadcrumbItem } from '../components/Breadcrumbs.astro';
+import AdSlot from '../components/AdSlot.astro';
+import type { SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  breadcrumbs: BreadcrumbItem[];
+  canonical?: string;
+  lang?: SupportedLanguage;
+  jsonLd?: Record<string, any> | Array<Record<string, any>>;
+  showAd?: boolean;
+}
+
+const {
+  title,
+  description,
+  breadcrumbs,
+  canonical,
+  lang = 'en',
+  jsonLd,
+  showAd = false
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  
+  <div class="container content-section">
+    <slot />
+    
+    {showAd && <AdSlot slotType="responsive" adSlotId="2345678901" />}
+  </div>
+</BaseLayout>

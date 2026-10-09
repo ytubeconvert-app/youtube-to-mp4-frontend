@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /temp/
+Disallow: /_temp/
+
+# Host configuration
+Host: https://ytubeconvert.com
+
+# Sitemap Index
+Sitemap: https://ytubeconvert.com/sitemap.xml
+Sitemap: https://ytubeconvert.com/sitemap-index.xml

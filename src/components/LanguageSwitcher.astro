@@ -1,0 +1,613 @@
+---
+import { languages, type SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  currentLang?: SupportedLanguage;
+}
+
+const { currentLang = 'en' } = Astro.props;
+const langEntries = Object.entries(languages);
+const currentMeta = languages[currentLang] || languages.en;
+const langCodeUpper = currentLang.toUpperCase();
+---
+
+<div class="lang-switcher-wrapper" id="lang-switcher-wrapper" data-current-lang={currentLang}>
+  <!-- Trigger Button -->
+  <button
+    type="button"
+    id="lang-trigger-btn"
+    class="lang-trigger-btn"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-controls="lang-dropdown-card"
+    aria-label={`Current language: ${currentMeta.name}. Click to change language.`}
+    title={`Change Language (${currentMeta.name})`}
+  >
+    <!-- Globe Icon (Web view only) -->
+    <svg class="lang-globe-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="2" y1="12" x2="22" y2="12"></line>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+    </svg>
+
+    <!-- Web view (> 1024px): Flag + Language Name -->
+    <span class="lang-label-web">
+      <span class="lang-flag">{currentMeta.flag}</span>
+      <span class="lang-name">{currentMeta.name}</span>
+    </span>
+
+    <!-- Lesser screen view (<= 1024px: Tablets & Mobile): ONLY Language Code -->
+    <span class="lang-code-only">{langCodeUpper}</span>
+
+    <!-- Dropdown Chevron (Web view only) -->
+    <svg class="lang-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </button>
+
+  <!-- Professional Floating Dropdown Popover Card -->
+  <div
+    id="lang-dropdown-card"
+    class="lang-dropdown-card"
+    role="listbox"
+    aria-label="Available languages"
+    tabindex="-1"
+  >
+    <!-- Popover Header -->
+    <div class="lang-card-header">
+      <div class="lang-header-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        <span>Select Language</span>
+      </div>
+      <span class="lang-header-count">14 regions</span>
+    </div>
+
+    <!-- 2-Column Languages Grid -->
+    <div class="lang-grid" id="lang-options-grid" role="group">
+      {langEntries.map(([code, meta]) => {
+        const isSelected = code === currentLang;
+        return (
+          <button
+            type="button"
+            class={`lang-option ${isSelected ? 'is-selected' : ''}`}
+            data-code={code}
+            role="option"
+            aria-selected={isSelected ? 'true' : 'false'}
+            title={`${meta.name} (${code.toUpperCase()})`}
+          >
+            <span class="opt-left">
+              <span class="opt-flag">{meta.flag}</span>
+              <span class="opt-name">{meta.name}</span>
+            </span>
+            <span class="opt-right">
+              {isSelected ? (
+                <svg class="opt-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              ) : (
+                <span class="opt-code">{code.toUpperCase()}</span>
+              )}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+
+    <!-- Popover Footer -->
+    <div class="lang-card-footer">
+      <span>Auto-adapts video and audio stream headers</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .lang-switcher-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  /* ──────────────────────────────────────────
+     TRIGGER BUTTON
+     ────────────────────────────────────────── */
+  .lang-trigger-btn {
+    display: flex;
+    align-items: center;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    height: 42px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .lang-trigger-btn:hover {
+    border-color: var(--border-focus);
+    background: var(--bg-elevated);
+  }
+
+  .lang-trigger-btn:active {
+    transform: scale(0.97);
+  }
+
+  .lang-trigger-btn[aria-expanded="true"] {
+    border-color: var(--border-focus);
+    background: var(--bg-elevated);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+  }
+
+  .lang-trigger-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .lang-globe-icon {
+    flex-shrink: 0;
+    color: var(--text-secondary);
+  }
+
+  .lang-flag {
+    font-size: 0.95rem;
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .lang-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .lang-chevron {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .lang-trigger-btn[aria-expanded="true"] .lang-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* 1. WEB VIEW (> 1024px) */
+  @media (min-width: 1025px) {
+    .lang-trigger-btn {
+      padding: 0 0.8rem;
+      gap: 0.45rem;
+      max-width: 180px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .lang-globe-icon {
+      display: block;
+    }
+
+    .lang-label-web {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lang-code-only {
+      display: none;
+    }
+
+    .lang-chevron {
+      display: block;
+      margin-left: 0.15rem;
+    }
+  }
+
+  /* 2. LESSER SCREEN VIEW (<= 1024px: Tablets & Mobile): ONLY LANGUAGE CODE */
+  @media (max-width: 1024px) {
+    .lang-trigger-btn {
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      border-radius: var(--radius-md);
+    }
+
+    .lang-globe-icon,
+    .lang-label-web,
+    .lang-chevron {
+      display: none !important;
+    }
+
+    .lang-code-only {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      line-height: 1;
+    }
+  }
+
+  /* ──────────────────────────────────────────
+     FLOATING DROPDOWN CARD (POPOVER)
+     ────────────────────────────────────────── */
+  .lang-dropdown-card {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 330px;
+    background: var(--bg-secondary);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.97);
+    pointer-events: none;
+    transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.18s;
+    overflow: hidden;
+  }
+
+  .lang-dropdown-card.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  /* RTL Support for Arabic */
+  :global(html[dir="rtl"]) .lang-dropdown-card {
+    right: auto;
+    left: 0;
+  }
+
+  /* Dropdown Header */
+  .lang-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 0.85rem 0.55rem;
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .lang-header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+  }
+
+  .lang-header-title svg {
+    color: var(--accent);
+  }
+
+  .lang-header-count {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--bg-tertiary);
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+  }
+
+  /* Languages Grid */
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.3rem;
+    padding: 0.5rem;
+    max-height: 380px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+  }
+
+  .lang-grid::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .lang-grid::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+  }
+
+  /* Individual Option Button */
+  .lang-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem;
+    padding: 0.5rem 0.6rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.825rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease, transform 0.1s ease;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  :global(html[dir="rtl"]) .lang-option {
+    text-align: right;
+  }
+
+  .lang-option:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+  }
+
+  .lang-option:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -1px;
+    background: var(--bg-tertiary);
+  }
+
+  .lang-option:active {
+    transform: scale(0.97);
+  }
+
+  .lang-option.is-selected {
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.3);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .opt-left {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .opt-flag {
+    font-size: 0.95rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .opt-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .opt-right {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .opt-code {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    padding: 0.1rem 0.3rem;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .opt-check {
+    color: var(--accent);
+  }
+
+  /* Dropdown Footer */
+  .lang-card-footer {
+    padding: 0.45rem 0.85rem;
+    border-top: 1px solid var(--border-color);
+    background: rgba(0, 0, 0, 0.1);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  /* ──────────────────────────────────────────
+     MOBILE RESPONSIVE POSITIONING
+     ────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .lang-dropdown-card {
+      position: fixed;
+      top: calc(var(--header-height) + 8px);
+      right: 12px;
+      left: 12px;
+      width: auto;
+      max-width: 340px;
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    :global(html[dir="rtl"]) .lang-dropdown-card {
+      right: 12px;
+      left: 12px;
+      margin-left: 0;
+      margin-right: auto;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .lang-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    const wrapper = document.getElementById('lang-switcher-wrapper');
+    const trigger = document.getElementById('lang-trigger-btn');
+    const dropdown = document.getElementById('lang-dropdown-card');
+    if (!wrapper || !trigger || !dropdown) return;
+
+    function openDropdown() {
+      // Mutually close mobile navigation drawer if open
+      const mobileDrawer = document.getElementById('mobile-nav-drawer');
+      const mobileBtn = document.getElementById('mobile-menu-toggle');
+      const openIcon = document.querySelector('.hamburger-open-icon');
+      const closeIcon = document.querySelector('.hamburger-close-icon');
+      if (mobileDrawer && mobileDrawer.classList.contains('active')) {
+        mobileDrawer.classList.remove('active');
+        if (mobileBtn) mobileBtn.setAttribute('aria-expanded', 'false');
+        mobileDrawer.setAttribute('aria-hidden', 'true');
+        if (openIcon && closeIcon) {
+          openIcon.style.display = 'block';
+          closeIcon.style.display = 'none';
+        }
+      }
+
+      dropdown.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDropdown() {
+      dropdown.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleDropdown() {
+      if (dropdown.classList.contains('is-open')) {
+        closeDropdown();
+      } else {
+        openDropdown();
+      }
+    }
+
+    // Toggle on trigger click
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleDropdown();
+    });
+
+    // Close on click outside
+    document.addEventListener('click', function(e) {
+      if (!wrapper.contains(e.target)) {
+        closeDropdown();
+      }
+    });
+
+    // Close on Escape or handle keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (dropdown.classList.contains('is-open')) {
+        if (e.key === 'Escape') {
+          closeDropdown();
+          trigger.focus();
+        } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const optionElements = Array.from(dropdown.querySelectorAll('.lang-option'));
+          const currentIndex = optionElements.indexOf(document.activeElement);
+          if (e.key === 'ArrowDown') {
+            const nextIndex = currentIndex < optionElements.length - 1 ? currentIndex + 1 : 0;
+            optionElements[nextIndex].focus();
+          } else {
+            const prevIndex = currentIndex > 0 ? currentIndex - 1 : optionElements.length - 1;
+            optionElements[prevIndex].focus();
+          }
+        }
+      }
+    });
+
+    // Close on window resize
+    window.addEventListener('resize', function() {
+      if (dropdown.classList.contains('is-open')) {
+        closeDropdown();
+      }
+    });
+
+    // Handle Option Selection
+    const options = dropdown.querySelectorAll('.lang-option');
+    options.forEach(function(opt) {
+      opt.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const targetLang = e.currentTarget.getAttribute('data-code');
+        if (!targetLang) return;
+
+        const currentLang = wrapper.getAttribute('data-current-lang') || 'en';
+        if (targetLang === currentLang) {
+          closeDropdown();
+          return;
+        }
+
+        closeDropdown();
+
+        // Safe URL clean & route mapping
+        let pathname = window.location.pathname;
+        pathname = pathname.replace(/\/index\.html$/, '').replace(/index\.html$/, '');
+
+        const locales = ['es', 'hi', 'pt', 'fr', 'de', 'id', 'ar', 'ru', 'ja', 'tr', 'it', 'ko', 'vi'];
+        const supportedPages = [
+          '',
+          'youtube-to-mp4-converter',
+          'youtube-to-mp4-downloader',
+          'youtube-to-mp4-1080p',
+          'youtube-to-mp4-4k',
+          'convert-youtube-to-mp4',
+          'youtube-to-mp4-player',
+          'faq',
+          'how-to-use'
+        ];
+        
+        // Strip any existing language prefix (e.g. /es/faq -> /faq, /es/ -> /, /es -> /)
+        let cleanPath = pathname;
+        for (const loc of locales) {
+          if (cleanPath.startsWith('/' + loc + '/')) {
+            cleanPath = cleanPath.slice(loc.length + 1);
+            break;
+          } else if (cleanPath === '/' + loc) {
+            cleanPath = '/';
+            break;
+          }
+        }
+        
+        // Normalize to route slug without leading or trailing slashes
+        const routeSlug = cleanPath.replace(/^\/+|\/+$/g, '');
+        const isSupported = supportedPages.includes(routeSlug);
+        
+        if (targetLang === 'en') {
+          if (isSupported) {
+            window.location.href = routeSlug ? ('/' + routeSlug) : '/';
+          } else {
+            window.location.href = cleanPath || '/';
+          }
+        } else {
+          if (isSupported) {
+            window.location.href = routeSlug ? ('/' + targetLang + '/' + routeSlug) : ('/' + targetLang + '/');
+          } else {
+            window.location.href = '/' + targetLang + '/';
+          }
+        }
+      });
+    });
+  })();
+</script>

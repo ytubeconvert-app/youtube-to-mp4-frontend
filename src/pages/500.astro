@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="500 - Server Error / Offline | YouTube to MP4"
+  description="Our conversion servers are temporarily undergoing maintenance. Please check back shortly."
+  canonical="https://youtubetomp4.org/500"
+>
+  <div class="container" style="text-align: center; padding: clamp(2.5rem, 7vw, 6rem) 1rem clamp(3.5rem, 9vw, 8rem);">
+    <span class="brand-badge" style="font-size: clamp(3.5rem, 12vw, 6rem); font-weight: 900; line-height: 1;">500</span>
+    <h1 style="font-size: clamp(1.75rem, 5vw, 2.25rem); margin: 1rem 0 1.25rem;">System Temporarily Unavailable</h1>
+    <p style="color: var(--text-secondary); max-width: 540px; margin: 0 auto 2rem; font-size: clamp(0.95rem, 2.5vw, 1.1rem);">
+      Our video conversion cluster is experiencing heavy traffic or undergoing routine infrastructure maintenance. Your network is fine; our engineers are already addressing this.
+    </p>
+
+    <div style="display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap;">
+      <button onclick="window.location.reload()" class="btn-convert" style="padding: 0.85rem 1.75rem;">
+        Retry Connection
+      </button>
+      <a href="/" class="quality-btn" style="padding: 0.85rem 1.5rem; text-decoration: none;">
+        Return to Home
+      </a>
+    </div>
+  </div>
+</BaseLayout>

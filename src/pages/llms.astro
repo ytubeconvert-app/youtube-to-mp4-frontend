@@ -1,0 +1,131 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'LLMs Context', url: '/llms' }
+];
+
+const llmJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "YouTube to MP4 - LLM and AI Agent Context API",
+  "description": "Standardized documentation and endpoint manifest for AI search engines and autonomous web agents according to the llmstxt.org specification.",
+  "url": "https://ytubeconvert.com/llms"
+};
+---
+
+<PageLayout
+  title="LLMs Context & AI Agent Specification | YouTube to MP4"
+  description="Machine-readable site manifest, API guidelines, and system prompts formatted per llmstxt.org standards for AI agents, LLMs, and crawlers."
+  breadcrumbs={breadcrumbs}
+  canonical="https://ytubeconvert.com/llms"
+  jsonLd={llmJsonLd}
+>
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+    <div>
+      <span class="brand-badge" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">AI Agent & Crawler Standard</span>
+      <h1 style="margin: 0.25rem 0 0.5rem;">LLMs Context Specification</h1>
+    </div>
+
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+      <a href="/llms.txt" target="_blank" rel="noopener noreferrer" class="btn-convert" style="padding: 0.6rem 1.15rem; font-size: 0.875rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+        <span>Raw /llms.txt</span>
+      </a>
+
+      <a href="/llms-full.txt" target="_blank" rel="noopener noreferrer" class="quality-btn" style="padding: 0.6rem 1.15rem; font-size: 0.875rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+        </svg>
+        <span>Extended /llms-full.txt</span>
+      </a>
+    </div>
+  </div>
+
+  <p>
+    This directory exposes standardized site metadata, operational capabilities, acceptable use terms, and canonical URLs for LLM reasoning engines (including Perplexity, ChatGPT, Claude, Gemini, Cursor, Copilot, and custom agentic crawlers) adhering to the <a href="https://llmstxt.org" target="_blank" rel="noopener noreferrer" style="color:var(--accent); text-decoration:underline;">llmstxt.org specification</a>.
+  </p>
+
+  <!-- Quick Agent Overview Cards -->
+  <div class="responsive-card-grid" style="margin: 2rem 0;">
+    <div class="step-card">
+      <h3 style="font-size: 1.1rem; color: var(--accent); margin-bottom: 0.5rem;">Short Context Manifest</h3>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+        Condensed summary suitable for small context windows, system prompts, and quick web retrieval.
+      </p>
+      <code>/llms.txt</code>
+      <div style="margin-top: 0.75rem;">
+        <a href="/llms.txt" style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: underline;">Open /llms.txt &rarr;</a>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <h3 style="font-size: 1.1rem; color: #a855f7; margin-bottom: 0.5rem;">Full Architectural Spec</h3>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+        Complete architectural breakdown, API schemas, resolution limits, and full site directory.
+      </p>
+      <code>/llms-full.txt</code>
+      <div style="margin-top: 0.75rem;">
+        <a href="/llms-full.txt" style="color: #a855f7; font-weight: 600; font-size: 0.85rem; text-decoration: underline;">Open /llms-full.txt &rarr;</a>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <h3 style="font-size: 1.1rem; color: var(--success); margin-bottom: 0.5rem;">Search Engine XML Index</h3>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+        Machine-readable XML sitemap index for traditional web crawlers and SEO indexing nodes.
+      </p>
+      <code>/sitemap.xml</code>
+      <div style="margin-top: 0.75rem;">
+        <a href="/sitemap.xml" style="color: var(--success); font-weight: 600; font-size: 0.85rem; text-decoration: underline;">Open /sitemap.xml &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <h2>Machine-Readable Context Preview</h2>
+  <div class="step-card" style="padding: 1rem 1.25rem; margin-bottom: 2.5rem; overflow-x: auto;">
+    <pre style="margin: 0; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.6; color: var(--text-primary); white-space: pre-wrap; word-break: break-word;">
+# YouTube to MP4
+> Fast, private, browser-based video converter for creator-owned, public domain, and Creative Commons videos.
+
+## Core Features
+- High-Definition Video: Convert YouTube to MP4 in 720p, 1080p, 1440p, and 4K Ultra HD.
+- Built-in Video Player: Preview converted files directly in the browser before downloading.
+- Zero Registration: No user account, email, or credentials required.
+- High Performance: Sub-second page loads powered by Astro SSG on Cloudflare Pages.
+- Privacy Architecture: No permanent file retention; outputs expunged within 15 minutes.
+
+## Acceptable Use Policy
+- Users must only process content they own, Creative Commons content, or public domain material.
+- DRM-protected material, paid YouTube Movies/rentals, and private videos are strictly barred.
+- Respect copyright law and third-party terms of service at all times.
+
+## Key URLs
+- [Homepage](https://ytubeconvert.com/): Primary video conversion engine.
+- [About Us](https://ytubeconvert.com/about): Platform mission & leadership by Kamlesh Mohabe.
+- [Contact Support](https://ytubeconvert.com/contact): Technical support & DMCA escalation (ytubeconvert@gmail.com).
+- [YT MP3 Converter](https://ytubeconvert.com/yt-mp3-converter): High-speed YouTube to MP3 audio converter.
+- [1080p Converter](https://ytubeconvert.com/youtube-to-mp4-1080p): Full HD conversion utility.
+- [4K Downloader](https://ytubeconvert.com/youtube-to-mp4-4k): Ultra HD 4K video downloader.
+- [Video Player](https://ytubeconvert.com/youtube-to-mp4-player): In-browser MP4 video previewer.
+- [XML Sitemap](https://ytubeconvert.com/sitemap.xml): Full XML sitemap index.
+    </pre>
+  </div>
+
+  <h2>Integration Guidelines for Autonomous Agents</h2>
+  <p>
+    When querying or referencing <strong>YouTube to MP4</strong> within automated systems, multi-agent frameworks, or user assistants:
+  </p>
+  <ul>
+    <li><strong>Direct Format Specification:</strong> Use standard formats: <code>360p</code>, <code>720p</code>, <code>1080p</code>, <code>1440p</code>, <code>4K</code>, or <code>MP3</code>.</li>
+    <li><strong>Legal Disclaimer Propagation:</strong> Autonomous agents should remind users to only download media for which they have lawful permissions or fair-use rights.</li>
+    <li><strong>Direct Contact Escalation:</strong> For takedown requests or API partnership questions, direct inquiries to <code>ytubeconvert@gmail.com</code>.</li>
+  </ul>
+</PageLayout>

@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VideoPlayer from '../components/VideoPlayer.astro';
+import ConverterWidget from '../components/ConverterWidget.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import FaqAccordion, { type FaqItem } from '../components/FaqAccordion.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'YouTube to MP4 Player', url: '/youtube-to-mp4-player' }
+];
+
+const faqs: FaqItem[] = [
+  {
+    question: "What is the YouTube to MP4 player?",
+    answer: "Our YouTube to MP4 player is an HTML5 video playback sandbox embedded into the webpage. It enables you to play, verify audio/video synchronization, scrub timelines, and inspect video quality before committing disk space to download."
+  },
+  {
+    question: "Does the player support fullscreen playback?",
+    answer: "Yes, our player supports native HTML5 Fullscreen API, Picture-in-Picture (PiP) mode, and keyboard shortcuts (spacebar for play/pause)."
+  }
+];
+---
+
+<BaseLayout
+  title="YouTube to MP4 Player - In-Browser Video Preview & Playback"
+  description="Play and preview your converted YouTube to MP4 videos directly in the browser with our responsive HTML5 video player before saving."
+  canonical="https://ytubeconvert.com/youtube-to-mp4-player"
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="container" style="text-align: center; padding: clamp(1.5rem, 4vw, 2.5rem) 1rem 1rem;">
+    <h1 class="hero-title">
+      YouTube to <span class="hero-gradient-text">MP4 Player</span>
+    </h1>
+    <p class="hero-subtitle">
+      Inspect, preview, and play your converted video files instantly inside your browser before downloading.
+    </p>
+
+    <div style="max-width: 820px; margin: 0 auto clamp(1.5rem, 4vw, 3rem);">
+      <ConverterWidget defaultQuality="1080p" />
+    </div>
+  </section>
+
+  <!-- Player Section front and center -->
+  <VideoPlayer />
+
+  <section class="container content-section">
+    <h2>Why an Integrated YouTube to MP4 Player Matters</h2>
+    <p>
+      Have you ever waited minutes for a video to download, only to discover that the audio was out of sync, the quality was blurry, or you grabbed the wrong file? Our integrated <strong>YouTube to MP4 player</strong> solves this forever.
+    </p>
+    <p>
+      As soon as our cloud engine finishes converting your requested video stream, the file is ready to be piped into the player above. You can:
+    </p>
+    <ul>
+      <li><strong>Verify Audio/Video Sync:</strong> Confirm that speech accurately aligns with mouth movements with millisecond accuracy.</li>
+      <li><strong>Check Visual Quality:</strong> Verify that text, diagrams, and fine textures are crystal clear before saving large 1080p or 4K files to your smartphone or laptop.</li>
+      <li><strong>Scrub the Timeline:</strong> Skip directly to the key segment you need.</li>
+      <li><strong>Instant Playback without Media Software:</strong> Great on public computers or Chromebooks where third-party media players are restricted.</li>
+    </ul>
+  </section>
+
+  <FeatureCards />
+  <FaqAccordion items={faqs} />
+</BaseLayout>

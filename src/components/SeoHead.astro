@@ -1,0 +1,130 @@
+---
+import { languages, type SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  lang?: SupportedLanguage;
+  ogType?: 'website' | 'article';
+  image?: string;
+  jsonLd?: Record<string, any> | Array<Record<string, any>>;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  lang = 'en',
+  ogType = 'website',
+  image = '/favicon.svg',
+  jsonLd
+} = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://ytubeconvert.com';
+const currentPath = Astro.url.pathname;
+const canonicalUrl = canonical || `${siteUrl}${currentPath}`;
+const langList = Object.keys(languages) as SupportedLanguage[];
+
+// Check if current route exists in all localized languages
+const localizedPages = [
+  '/',
+  '/youtube-to-mp4-converter',
+  '/youtube-to-mp4-downloader',
+  '/youtube-to-mp4-1080p',
+  '/youtube-to-mp4-4k',
+  '/convert-youtube-to-mp4',
+  '/youtube-to-mp4-player',
+  '/faq',
+  '/how-to-use'
+];
+
+let baseClean = currentPath;
+for (const knownLang of langList) {
+  if (baseClean.startsWith(`/${knownLang}/`)) {
+    baseClean = baseClean.substring(knownLang.length + 1);
+    break;
+  } else if (baseClean === `/${knownLang}`) {
+    baseClean = '/';
+    break;
+  }
+}
+if (!baseClean.startsWith('/')) baseClean = '/' + baseClean;
+const normalizedBase = baseClean.replace(/\/+$/, '') || '/';
+const isLocalizedPage = localizedPages.includes(normalizedBase);
+
+// Generate clean alternate links for i18n
+function getLocalizedUrl(l: SupportedLanguage) {
+  return l === 'en'
+    ? `${siteUrl}${normalizedBase}`
+    : `${siteUrl}/${l}${normalizedBase === '/' ? '' : normalizedBase}`;
+}
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Hreflang alternates for localized pages -->
+  {isLocalizedPage && (
+    <>
+      <link rel="alternate" hreflang="x-default" href={getLocalizedUrl('en')} />
+      {langList.map((l) => (
+        <link rel="alternate" hreflang={l} href={getLocalizedUrl(l)} />
+      ))}
+    </>
+  )}
+
+  <!-- Favicon & Manifest -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#090d16" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={ogType} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:site_name" content="YouTube to MP4" />
+  <meta property="og:image" content={`${siteUrl}${image}`} />
+  <meta property="og:locale" content={lang} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${siteUrl}${image}`} />
+
+  <!-- Speculation Rules: Prefetch on user interaction only -->
+  <script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        "source": "list",
+        "urls": ["/about", "/contact"],
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Anti-flash inline theme loader -->
+  <script is:inline>
+    (function() {
+      try {
+        const saved = localStorage.getItem('theme');
+        const theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- JSON-LD Structured Data -->
+  {jsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )}
+</head>

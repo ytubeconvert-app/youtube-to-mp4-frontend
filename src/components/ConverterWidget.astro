@@ -1,0 +1,70 @@
+---
+import { useTranslations, type SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  lang?: SupportedLanguage;
+  defaultQuality?: string;
+}
+
+const { lang = 'en', defaultQuality = '1080p' } = Astro.props;
+const t = useTranslations(lang);
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
+---
+
+<div class="converter-container" id="converter-root" data-default-quality={defaultQuality}>
+  <form id="converter-form" class="converter-form" novalidate>
+    <div class="converter-input-wrapper">
+      <div class="input-field-container">
+        <input
+          type="url"
+          id="video-url"
+          name="url"
+          class="url-input"
+          placeholder={t('input_placeholder')}
+          autocomplete="off"
+          spellcheck="false"
+          required
+          aria-label="YouTube Video URL"
+        />
+        <button type="button" id="paste-btn" class="btn-paste" aria-label="Paste URL from clipboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+          </svg>
+          <span>{t('btn_paste')}</span>
+        </button>
+      </div>
+      <button type="submit" id="convert-btn" class="btn-convert">
+        <span>{t('btn_convert')}</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+
+    {turnstileSiteKey && (
+      <div
+        class="cf-turnstile"
+        data-sitekey={turnstileSiteKey}
+        data-theme="auto"
+        data-size="flexible"
+        style="margin: 0.5rem auto;"
+      ></div>
+    )}
+
+    <div id="converter-alert" class="alert" style="display:none;" role="alert"></div>
+
+    <div id="converter-status" class="converter-status" style="display:none;">
+      <div id="converter-preview"></div>
+      <div id="converter-action"></div>
+    </div>
+
+    <p class="converter-disclaimer">
+      🔒 <strong>Fair-Use Notice:</strong> {t('disclaimer_banner')}
+    </p>
+  </form>
+</div>
+
+<script>
+  import '../scripts/converter-widget';
+</script>

@@ -1,0 +1,75 @@
+# YouTube to MP4 - Complete LLM & Agentic Context Specification (llms-full.txt)
+
+> Fast, private, browser-based video conversion utility for creator-owned, public domain, and Creative Commons videos.
+> Official Website: https://ytubeconvert.com
+> Short Manifest: https://ytubeconvert.com/llms.txt
+> Extended Context: https://ytubeconvert.com/llms-full.txt
+> Contact & Support: ytubeconvert@gmail.com
+
+---
+
+## 1. Overview & Architectural Philosophy
+
+YouTube to MP4 (https://ytubeconvert.com) is an ultra-fast, privacy-first web utility built for video creators, educators, journalists, and academic researchers. It allows users to convert permitted YouTube videos into MP4 video (360p, 720p, 1080p, 1440p, 4K) or extract audio as MP3 for offline viewing, academic research, and fair-use educational purposes.
+
+### Engineering Principles
+- Zero Account Requirement: No registration, no cookies required for core operation, zero personal data harvesting.
+- Ephemeral File Retention: Generated conversion media files are automatically expunged from conversion servers within 15 minutes.
+- Non-Circumvention Compliance: The platform strictly respects Digital Rights Management (DRM). Paid rental media, subscription content, and DRM-protected streams (Widevine/FairPlay) are rejected at the gateway.
+- Static First Performance: Frontend built with Astro Static Site Generation (SSG), guaranteeing sub-second Largest Contentful Paint (LCP) and zero layout shift.
+
+---
+
+## 2. Core Conversion Capabilities
+
+| Feature | Supported Resolutions | Container Formats | Audio Codecs |
+| :--- | :--- | :--- | :--- |
+| MP4 Video Converter | 360p, 720p, 1080p Full HD, 1440p 2K, 2160p 4K | MP4 (MPEG-4 Part 14) | AAC (128 - 320 kbps) |
+| Audio Only Extractor | N/A | MP3 | MP3 (Constant Bitrate) |
+| In-Browser Player | Up to 4K | HTML5 MP4 | AAC |
+
+---
+
+## 3. Acceptable Use & Legal Policies
+
+### Allowed Content
+- Content wholly owned by the downloader (personal backups, archival of own uploads).
+- Videos published under Creative Commons (CC BY, CC BY-SA, CC0) licenses.
+- Public domain recordings, historic archives, and open educational resources.
+- Permitted statutory Fair Use (17 U.S.C. § 107) for transformative criticism, parody, news reporting, and scholarship.
+
+### Disallowed Content
+- DRM-encrypted media streams.
+- Commercially licensed movies, music videos under proprietary distribution, or paid YouTube rentals.
+- Automated bulk crawling or denial-of-service stress testing of conversion infrastructure.
+
+---
+
+## 4. Primary Site Directory & Canonical Endpoints
+
+### Conversion Engines
+- [Homepage Converter](https://ytubeconvert.com/): Primary multi-resolution conversion utility.
+- [YT MP3 Converter](https://ytubeconvert.com/yt-mp3-converter): High-speed YouTube to MP3 audio converter supporting up to 320 kbps fidelity.
+- [1080p Full HD Converter](https://ytubeconvert.com/youtube-to-mp4-1080p): Specialized high-bitrate 1080p video muxing engine.
+- [4K Ultra HD Downloader](https://ytubeconvert.com/youtube-to-mp4-4k): Ultra HD 2160p stream downloader.
+- [Video Player & Previewer](https://ytubeconvert.com/youtube-to-mp4-player): In-browser HTML5 media player for quality inspection.
+- [Downloader Landing Page](https://ytubeconvert.com/youtube-to-mp4-downloader): Direct download workflow guide.
+- [Converter Alternative](https://ytubeconvert.com/convert-youtube-to-mp4): Standard transcode workflow.
+
+### Guides, Documentation & Support
+- [About Us & Leadership](https://ytubeconvert.com/about): Platform management by Kamlesh Mohabe, Proprietor & Software Engineer.
+- [Contact Support](https://ytubeconvert.com/contact): Technical support, infrastructure inquiries, and legal escalation. Official email: ytubeconvert@gmail.com.
+- [FAQ Knowledgebase](https://ytubeconvert.com/faq): 21+ answered questions on formats, speeds, and device support.
+- [Step-by-Step Tutorial](https://ytubeconvert.com/how-to-use): Detailed visual walkthrough for downloading permitted videos.
+- [Blog & Video Guides](https://ytubeconvert.com/blog): In-depth engineering tutorials on video codecs, container muxing, and media preservation.
+- [YT MP3 Converter Guide](https://ytubeconvert.com/blog/yt-mp3-converter-guide): Comprehensive guide on audio bitrates, demuxing codecs, and downloader safety.
+- [HTML Sitemap](https://ytubeconvert.com/sitemap): Complete directory of website pages.
+- [XML Sitemap Index](https://ytubeconvert.com/sitemap.xml): Machine-readable search engine index.
+- [LLMs Context Page](https://ytubeconvert.com/llms): Human-readable AI context summary and agent documentation.
+
+### Legal & Trust Policies
+- [DMCA Policy](https://ytubeconvert.com/dmca): Copyright takedown notice procedure and designated copyright agent.
+- [Terms of Service](https://ytubeconvert.com/terms-of-service): Terms and acceptable use guidelines.
+- [Privacy Policy](https://ytubeconvert.com/privacy-policy): Zero-logging and data retention privacy policies.
+- [Cookie Policy](https://ytubeconvert.com/cookie-policy): Transparency statement regarding local storage and advertising cookies.
+- [Legal Disclaimer](https://ytubeconvert.com/disclaimer): Non-affiliation disclaimer regarding Google LLC and YouTube.

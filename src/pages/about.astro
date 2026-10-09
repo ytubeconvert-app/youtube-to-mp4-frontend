@@ -1,0 +1,85 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'About Us', url: '/about' }
+];
+---
+
+<PageLayout
+  title="About Us - YouTube to MP4 Mission & Technology"
+  description="Learn about the engineering philosophy, privacy architecture, and fair-use principles driving YouTube to MP4."
+  breadcrumbs={breadcrumbs}
+  canonical="https://ytubeconvert.com/about"
+>
+  <h1>About YouTube to MP4</h1>
+  <p>
+    <strong>YouTube to MP4</strong> was engineered by a team of veteran multimedia software engineers, streaming video specialists, and open-web advocates who grew frustrated with the predatory state of online video conversion utilities.
+  </p>
+
+  <h2>Our Mission</h2>
+  <p>
+    For over a decade, users searching for tools to save online video for education, research, and creative archiving have been subjected to misleading "Download" buttons, malware distribution networks, intrusive notification hijackers, and artificial quality restrictions.
+  </p>
+  <p>
+    Our mission is simple: to provide a clean, secure, transparent, and ultra-fast web utility to convert YouTube to MP4 without tracking, bloatware, or deceptive traps.
+  </p>
+
+  <h2>Our Engineering Core Principles</h2>
+  <ul>
+    <li><strong>Zero Software Installs:</strong> All processing is handled safely in the cloud and in standards-compliant browser runtimes. You will never be asked to install executable binaries or extensions.</li>
+    <li><strong>Ephemeral Privacy:</strong> We maintain a zero-retention policy for converted video files. All generated outputs are expunged permanently within 15 minutes of completion.</li>
+    <li><strong>Full Resolution Fidelity:</strong> We do not artificially throttle resolutions. We provide full 1080p Full HD, 1440p, and 4K Ultra HD streams whenever available in the source upload.</li>
+    <li><strong>Built-in Verification:</strong> Our integrated <a href="/youtube-to-mp4-player">YouTube to MP4 player</a> allows users to inspect files prior to downloading, saving data bandwidth.</li>
+  </ul>
+
+  <h2>Platform Leadership & Management</h2>
+  <div class="manager-card">
+    <div class="manager-avatar-wrapper">
+      <div class="manager-avatar" aria-label="Kamlesh Mohabe">
+        <span>KM</span>
+      </div>
+      <span class="manager-status-badge">
+        <span class="status-dot"></span>
+        Platform Lead
+      </span>
+    </div>
+
+    <div class="manager-content">
+      <div class="manager-header">
+        <div>
+          <h3 class="manager-name">Kamlesh Mohabe, Proprietor | Software Engineer</h3>
+          <p class="manager-role">Proprietor | Software Engineer</p>
+        </div>
+        <div class="manager-badges">
+          <span class="badge-exp">10+ Years Experience</span>
+        </div>
+      </div>
+
+      <p class="manager-bio">
+        Kamlesh Mohabe is a Software Engineer and digital Proprietor with 10+ years of professional experience. He specializes in professional software design, analyze, develop & manage.
+      </p>
+
+      <div class="manager-skills">
+        <span class="skill-pill">Software Architecture</span>
+        <span class="skill-pill">Systems Design</span>
+        <span class="skill-pill">Full-Stack Development</span>
+        <span class="skill-pill">JavaScript & TypeScript</span>
+        <span class="skill-pill">Node.js & Python</span>
+        <span class="skill-pill">Cloud Infrastructure</span>
+        <span class="skill-pill">Product Management</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>Copyright & Legal Fair Use</h2>
+  <p>
+    We strongly respect intellectual property rights. Our service is built to facilitate lawful media backups of creator-owned assets, public domain archives, and Creative Commons educational content. We do not provide mechanisms to circumvent DRM, access paid subscription videos, or infringe on commercial copyright.
+  </p>
+
+  <h2>Contact Our Team</h2>
+  <p>
+    Have questions, feedback, or infrastructure inquiries? You can reach our technical team via our <a href="/contact">Contact Page</a> or email us directly at <code>ytubeconvert@gmail.com</code>.
+  </p>
+</PageLayout>

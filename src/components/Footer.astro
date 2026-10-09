@@ -1,0 +1,78 @@
+---
+import { useTranslations, type SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const prefix = lang === 'en' ? '' : `/${lang}`;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href={prefix || '/'} class="brand-link" style="margin-bottom: 1rem; display: inline-flex;">
+          <svg width="24" height="24" viewBox="0 0 64 64" fill="none">
+            <rect width="64" height="64" rx="16" fill="#ef4444"/>
+            <path d="M24 20 L44 32 L24 44 Z" fill="#ffffff"/>
+          </svg>
+          <span style="margin-left: 0.5rem;">YouTube to <strong>MP4</strong></span>
+        </a>
+        <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; max-width: 320px;">
+          The web's fastest utility to convert YouTube to MP4 in 1080p and 4K quality. Designed for content creators, researchers, and fair-use archiving.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Conversion Tools</h4>
+        <ul class="footer-links">
+          <li><a href={`${prefix}/youtube-to-mp4-converter`}>YouTube to MP4 Converter</a></li>
+          <li><a href={`${prefix}/yt-mp3-converter`}>YT MP3 Converter</a></li>
+          <li><a href={`${prefix}/youtube-to-mp4-downloader`}>YouTube to MP4 Downloader</a></li>
+          <li><a href={`${prefix}/youtube-to-mp4-1080p`}>YouTube to MP4 1080p</a></li>
+          <li><a href={`${prefix}/youtube-to-mp4-4k`}>YouTube Convert to MP4 Download 4K</a></li>
+          <li><a href={`${prefix}/convert-youtube-to-mp4`}>Convert YouTube to MP4</a></li>
+          <li><a href={`${prefix}/youtube-to-mp4-player`}>YouTube to MP4 Player</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="/blog">Blog & Video Guides</a></li>
+          <li><a href={`${prefix}/how-to-use`}>How to Use Guide</a></li>
+          <li><a href={`${prefix}/faq`}>FAQ Knowledgebase</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal & Trust</h4>
+        <ul class="footer-links">
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/contact">Contact Support</a></li>
+          <li><a href="/dmca">DMCA Copyright Policy</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/terms-of-service">Terms of Service</a></li>
+          <li><a href="/cookie-policy">Cookie Policy</a></li>
+          <li><a href="/disclaimer">Legal Disclaimer</a></li>
+          <li><a href="#" id="cookie-settings-btn">Cookie Preferences</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        <p>&copy; {currentYear} YouTube to MP4. {t('footer_rights')}</p>
+      </div>
+      <div>
+        <p style="font-size:0.75rem;">
+          Notice: This website does not bypass DRM and is intended strictly for creator-owned or Creative Commons videos.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

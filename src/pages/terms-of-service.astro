@@ -1,0 +1,57 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Terms of Service', url: '/terms-of-service' }
+];
+---
+
+<PageLayout
+  title="Terms of Service - YouTube to MP4"
+  description="Terms and conditions governing the lawful, permitted use of the YouTube to MP4 converter utility."
+  breadcrumbs={breadcrumbs}
+  canonical="https://ytubeconvert.com/terms-of-service"
+>
+  <h1>Terms of Service</h1>
+  <p><em>Effective Date: October 2026</em></p>
+
+  <p>
+    Welcome to <strong>YouTube to MP4</strong>. By accessing or utilizing our website, API, or conversion utilities, you acknowledge that you have read, understood, and agreed to be bound by the following Terms of Service. If you do not agree to these terms, you must discontinue use immediately.
+  </p>
+
+  <h2>1. Permitted Use & User Warranties</h2>
+  <p>
+    Our service is engineered solely as a format transcode utility. You expressly agree and warrant that you will only use YouTube to MP4 to download:
+  </p>
+  <ul>
+    <li>Videos that you personally produced and uploaded, where you are the sole copyright owner.</li>
+    <li>Materials explicitly released under Creative Commons (such as CC-BY) or equivalent open licenses that permit derivative reuse or offline distribution.</li>
+    <li>Content in the public domain where intellectual property terms have expired.</li>
+    <li>Works for which you have secured documented, written permission from the copyright owner.</li>
+  </ul>
+
+  <h2>2. Strictly Prohibited Activities</h2>
+  <p>You agree NOT to:</p>
+  <ul>
+    <li>Use this tool to download copyrighted commercial motion pictures, television episodes, music videos, or subscription-gated material without authorization.</li>
+    <li>Attempt to circumvent, disable, or tamper with digital rights management (DRM), encryption tokens, or access-control protocols.</li>
+    <li>Use automated scrapers, bots, or scripts to flood our conversion queues or execute denial-of-service attacks.</li>
+    <li>Redistribute downloaded content for commercial sale or deceptive purposes.</li>
+  </ul>
+
+  <h2>3. Disclaimer of Warranties</h2>
+  <p>
+    The Service is provided on an "as is" and "as available" basis without warranties of any kind, whether express, statutory, or implied. We do not guarantee uninterrupted availability, error-free conversion, or that converted files will satisfy your specific requirements.
+  </p>
+
+  <h2>4. Limitation of Liability</h2>
+  <p>
+    In no event shall YouTube to MP4, its operators, employees, or infrastructure partners be liable for any indirect, punitive, incidental, or consequential damages arising out of your use or inability to use the service, including copyright infringement claims resulting from user abuse.
+  </p>
+
+  <h2>5. Termination & IP Blocking</h2>
+  <p>
+    We reserve the unconditional right to terminate access, block IP addresses, or disallow conversion of specific video URLs without prior notice for any user violating these Terms.
+  </p>
+</PageLayout>

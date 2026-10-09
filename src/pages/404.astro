@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 - Page Not Found | YouTube to MP4"
+  description="The page you requested could not be located. Return to the YouTube to MP4 homepage or browse our video guides."
+  canonical="https://ytubeconvert.com/404"
+>
+  <div class="container" style="text-align: center; padding: clamp(2.5rem, 7vw, 6rem) 1rem clamp(3.5rem, 9vw, 8rem);">
+    <span class="brand-badge" style="font-size: clamp(3.5rem, 12vw, 6rem); font-weight: 900; line-height: 1;">404</span>
+    <h1 style="font-size: clamp(1.75rem, 5vw, 2.25rem); margin: 1rem 0 1.25rem;">Page Not Found</h1>
+    <p style="color: var(--text-secondary); max-width: 540px; margin: 0 auto 2rem; font-size: clamp(0.95rem, 2.5vw, 1.1rem);">
+      We couldn't find the page or video resource you were looking for. It may have been relocated, removed, or typed incorrectly.
+    </p>
+
+    <div style="display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap;">
+      <a href="/" class="btn-convert" style="text-decoration: none; padding: 0.85rem 1.75rem;">
+        Back to Converter Homepage
+      </a>
+      <a href="/faq" class="quality-btn" style="padding: 0.85rem 1.5rem; text-decoration: none;">
+        View FAQ & Help
+      </a>
+    </div>
+
+    <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color); max-width: 600px; margin-left: auto; margin-right: auto;">
+      <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Popular Conversion Destinations:</h3>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; font-size: 0.9rem;">
+        <a href="/youtube-to-mp4-converter" style="color: var(--accent); text-decoration: underline;">YouTube to MP4 Converter</a>
+        <a href="/yt-mp3-converter" style="color: var(--accent); text-decoration: underline;">YT MP3 Converter</a>
+        <a href="/youtube-to-mp4-1080p" style="color: var(--accent); text-decoration: underline;">1080p Full HD</a>
+        <a href="/youtube-to-mp4-player" style="color: var(--accent); text-decoration: underline;">Integrated Player</a>
+        <a href="/sitemap" style="color: var(--accent); text-decoration: underline;">HTML Sitemap</a>
+        <a href="/contact" style="color: var(--accent); text-decoration: underline;">Contact Support</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

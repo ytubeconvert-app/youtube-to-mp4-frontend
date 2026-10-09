@@ -1,0 +1,37 @@
+---
+import { useTranslations, type SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="steps-section" id="how-it-works">
+  <div class="container">
+    <h2 class="section-title">{t('how_it_works_title')}</h2>
+    <p class="section-subtitle">{t('how_it_works_subtitle')}</p>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>{t('step_1_title')}</h3>
+        <p>{t('step_1_desc')}</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>{t('step_2_title')}</h3>
+        <p>{t('step_2_desc')}</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>{t('step_3_title')}</h3>
+        <p>{t('step_3_desc')}</p>
+      </div>
+    </div>
+  </div>
+</section>

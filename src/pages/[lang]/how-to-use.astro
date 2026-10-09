@@ -1,0 +1,38 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import HowItWorks from '../../components/HowItWorks.astro';
+import ConverterWidget from '../../components/ConverterWidget.astro';
+import { useTranslations, type SupportedLanguage } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  const locales: SupportedLanguage[] = [
+    'es', 'hi', 'pt', 'fr', 'de', 'id', 'ar', 'ru', 'ja', 'tr', 'it', 'ko', 'vi'
+  ];
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+
+const breadcrumbs = [
+  { name: t('nav_home'), url: `/${lang}` },
+  { name: t('nav_how_to_use'), url: `/${lang}/how-to-use` }
+];
+---
+
+<PageLayout
+  title={`${t('nav_how_to_use')} - ${t('site_title')}`}
+  description={t('site_description')}
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  canonical={`https://youtubetomp4.org/${lang}/how-to-use`}
+>
+  <h1>{t('how_it_works_title')}</h1>
+  <p>{t('how_it_works_subtitle')}</p>
+
+  <div style="max-width: 820px; margin: 2rem auto;">
+    <ConverterWidget lang={lang} defaultQuality="1080p" />
+  </div>
+
+  <HowItWorks lang={lang} />
+</PageLayout>

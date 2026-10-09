@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import HowItWorks from '../../components/HowItWorks.astro';
+import FeatureCards from '../../components/FeatureCards.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
+import FaqAccordion, { type FaqItem } from '../../components/FaqAccordion.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { useTranslations, type SupportedLanguage } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  const locales: SupportedLanguage[] = [
+    'es', 'hi', 'pt', 'fr', 'de', 'id', 'ar', 'ru', 'ja', 'tr', 'it', 'ko', 'vi'
+  ];
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+
+const breadcrumbs = [
+  { name: t('nav_home'), url: `/${lang}` },
+  { name: `${t('hero_title_prefix')} 4K`, url: `/${lang}/youtube-to-mp4-4k` }
+];
+
+const faqs: FaqItem[] = [
+  {
+    question: t('how_it_works_title'),
+    answer: `${t('step_1_desc')} ${t('step_2_desc')} ${t('step_3_desc')}`
+  },
+  {
+    question: t('feature_2_title'),
+    answer: t('feature_2_desc')
+  },
+  {
+    question: t('feature_6_title'),
+    answer: t('feature_6_desc')
+  }
+];
+---
+
+<BaseLayout
+  title={`${t('hero_title_prefix')} 4K Ultra HD - ${t('site_title')}`}
+  description={t('site_description')}
+  lang={lang}
+  canonical={`https://youtubetomp4.org/${lang}/youtube-to-mp4-4k`}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero lang={lang} h1Title={`${t('hero_title_prefix')} 4K Ultra HD`} defaultQuality="4k" />
+  <HowItWorks lang={lang} />
+  <VideoPlayer lang={lang} />
+  <FeatureCards lang={lang} />
+
+  <section class="container content-section">
+    <h2>4K Ultra HD - {t('features_title')}</h2>
+    <p>
+      {t('feature_2_desc')}
+    </p>
+    <ul>
+      <li><strong>4K (2160p):</strong> {t('feature_2_desc')}</li>
+      <li><strong>{t('feature_1_title')}:</strong> {t('feature_1_desc')}</li>
+      <li><strong>{t('trust_no_watermark')}:</strong> {t('feature_5_desc')}</li>
+    </ul>
+  </section>
+
+  <FaqAccordion items={faqs} title={t('nav_faq')} />
+</BaseLayout>

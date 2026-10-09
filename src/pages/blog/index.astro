@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import AdSlot from '../../components/AdSlot.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Blog', url: '/blog' }
+];
+
+const categories = Array.from(new Set(posts.map(p => p.data.category)));
+---
+
+<BaseLayout
+  title="Blog & Video Technology Guides | YouTube to MP4"
+  description="Master video conversion, codec analysis, legal fair-use tips, and format optimization tutorials written by multimedia engineers."
+  canonical="https://ytubeconvert.com/blog"
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <div class="container content-section" style="max-width: 960px; padding-top: 1rem;">
+    <div style="text-align: center; margin-bottom: clamp(1.75rem, 5vw, 3rem);">
+      <h1 class="section-title">Video Technology & Guides</h1>
+      <p class="section-subtitle">
+        Deep technical tutorials, format comparisons, and fair-use tips to help creators and researchers master digital video.
+      </p>
+
+      <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+        {categories.map((cat) => (
+          <span class="quality-badge" style="background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color); padding: 4px 10px; font-size: 0.8rem;">
+            {cat}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <AdSlot slotType="leaderboard" adSlotId="1122334455" />
+
+    <div class="responsive-card-grid">
+      {posts.map((post) => (
+        <article class="step-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+              <span class="quality-badge" style="background: var(--accent); color: #000; font-size: 0.7rem;">
+                {post.data.category}
+              </span>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">
+                {post.data.readingTime}
+              </span>
+            </div>
+
+            <h2 style="font-size: 1.25rem; line-height: 1.35; margin-bottom: 0.6rem;">
+              <a href={`/blog/${post.slug}`} style="color: var(--text-primary);">
+                {post.data.title}
+              </a>
+            </h2>
+
+            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1.25rem;">
+              {post.data.description}
+            </p>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted);">
+            <span>{post.data.author.split(',')[0]}</span>
+            <a href={`/blog/${post.slug}`} style="color: var(--accent); font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem;">
+              Read guide &rarr;
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <AdSlot slotType="responsive" adSlotId="2233445566" />
+  </div>
+</BaseLayout>

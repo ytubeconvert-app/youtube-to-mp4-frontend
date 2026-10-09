@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import VideoPlayer from '../components/VideoPlayer.astro';
+import FaqAccordion, { type FaqItem } from '../components/FaqAccordion.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'YouTube to MP4 1080p', url: '/youtube-to-mp4-1080p' }
+];
+
+const faqs: FaqItem[] = [
+  {
+    question: "Why do some converters cap video at 720p instead of 1080p?",
+    answer: "YouTube delivers 720p as a pre-merged progressive stream, whereas 1080p requires separate video and audio extraction and server-side FFmpeg muxing. Many low-cost converters refuse to invest in the computing power required for 1080p. Our service invests in high-speed cloud infrastructure to support full 1080p Full HD at high bitrates."
+  },
+  {
+    question: "Does 1080p support 60 frames per second (fps)?",
+    answer: "Yes, when the source video was uploaded in 1080p60 (such as gaming, sports, or high-framerate action footage), our converter preserves the full 60 fps cadence."
+  }
+];
+---
+
+<BaseLayout
+  title="YouTube to MP4 1080p - Convert Videos in Full HD Quality"
+  description="Convert YouTube to MP4 in true 1080p Full HD with synchronized high-bitrate audio. Clean, fast, free, and zero quality loss."
+  canonical="https://ytubeconvert.com/youtube-to-mp4-1080p"
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero h1Title="YouTube to MP4 1080p" defaultQuality="1080p" />
+  <HowItWorks />
+  <VideoPlayer />
+  <FeatureCards />
+
+  <section class="container content-section">
+    <h2>Full HD YouTube to MP4 1080p Conversion Explained</h2>
+    <p>
+      Standard Definition (480p) and entry-level High Definition (720p) often look grainy and pixelated when viewed on modern high-resolution laptop screens and 4K displays. Our dedicated <strong>YouTube to MP4 1080p</strong> engine delivers true 1920&times;1080 Full HD resolution with zero compromise.
+    </p>
+
+    <h3>Why 1080p Is the Ideal Sweet Spot for Most Users</h3>
+    <p>
+      While 4K offers higher pixel counts, 1080p remains the industry standard choice for daily productivity:
+    </p>
+    <ul>
+      <li><strong>Manageable Storage:</strong> A 10-minute 1080p video averages 250 MB to 400 MB, compared to 1.5 GB+ for 4K. It downloads three times faster and won't overwhelm your device storage.</li>
+      <li><strong>Immediate Playback on All Hardware:</strong> Older iPads, budget Android phones, and classroom projectors play 1080p without frame drops or CPU stutter.</li>
+      <li><strong>High Visual Sharpness:</strong> At normal viewing distances on screens under 32 inches, 1080p delivers razor-sharp text, legible code editors, and detailed visuals.</li>
+    </ul>
+  </section>
+
+  <FaqAccordion items={faqs} />
+</BaseLayout>

@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import VideoPlayer from '../components/VideoPlayer.astro';
+import FaqAccordion, { type FaqItem } from '../components/FaqAccordion.astro';
+import AdSlot from '../components/AdSlot.astro';
+
+const homeJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "YouTube to MP4",
+    "url": "https://ytubeconvert.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://ytubeconvert.com/convert-youtube-to-mp4?url={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "YouTube to MP4 Converter",
+    "url": "https://ytubeconvert.com",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All (Web Browser, Windows, macOS, Android, iOS, Linux)",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free, lightning-fast web tool to convert YouTube to MP4 videos in 1080p and 4K quality with an integrated video preview player."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "YouTube to MP4",
+    "url": "https://ytubeconvert.com",
+    "logo": "https://ytubeconvert.com/favicon.svg"
+  }
+];
+
+const homeFaqs: FaqItem[] = [
+  {
+    question: "What is the best way to convert YouTube to MP4 in 1080p without losing quality?",
+    answer: "Our web-based YouTube to MP4 converter extracts direct video and high-bitrate AAC audio streams directly from YouTube's media servers, multiplexing them with FFmpeg into an industry-standard H.264 MP4 container. This eliminates re-compression artifacts, ensuring your 1080p and 4K downloads remain pin-sharp."
+  },
+  {
+    question: "Is it legal to convert YouTube to MP4?",
+    answer: "Yes, converting YouTube videos is completely legal provided you download content that you personally created and own, content that is in the public domain, or videos published under an open Creative Commons (CC-BY) license. You must never download commercial copyright-protected material or bypass digital rights management (DRM) technologies."
+  },
+  {
+    question: "Can I preview the video before downloading it to my computer or phone?",
+    answer: "Yes! Unlike other conversion sites, we feature an integrated YouTube to MP4 player right on this page. Once conversion completes, you can hit 'Preview in Video Player Below' to verify full audio-video synchronization before initiating the file download."
+  },
+  {
+    question: "Do I need to install any software or browser extensions?",
+    answer: "No. The entire conversion process runs on our scalable cloud infrastructure. You only need a modern web browser like Google Chrome, Apple Safari, Mozilla Firefox, or Microsoft Edge. No executable files, adware, or plugins are ever required."
+  },
+  {
+    question: "Why do some converted videos have no sound on older converters?",
+    answer: "YouTube stores 1080p and 4K video streams separately from audio streams using dynamic adaptive streaming (DASH). Basic downloaders only pull the silent video track. Our service automatically merges the separate high-fidelity audio track into the MP4 file before delivering it to you, guaranteeing crystal-clear sound."
+  }
+];
+---
+
+<BaseLayout
+  title="YouTube to MP4 - Convert & Download YouTube Videos in 1080p / 4K"
+  description="Convert YouTube to MP4 in high-definition 1080p and 4K quality. Ultra-fast, free, no registration required, with built-in video preview player."
+  canonical="https://ytubeconvert.com/"
+  jsonLd={homeJsonLd}
+>
+  <!-- Above the fold: Hero with typing animation & converter widget -->
+  <Hero h1Title="YouTube to MP4" defaultQuality="1080p" />
+
+  <AdSlot slotType="leaderboard" adSlotId="9876543210" />
+
+  <!-- How It Works Section -->
+  <HowItWorks />
+
+  <!-- Built-in Video Player Section -->
+  <VideoPlayer />
+
+  <!-- Features Grid -->
+  <FeatureCards />
+
+  <AdSlot slotType="responsive" adSlotId="8765432109" />
+
+  <!-- In-depth, 1,500+ Word Editorial SEO Content Section -->
+  <section class="container content-section">
+    <h2>The Ultimate Guide to YouTube to MP4 Conversion in High Definition</h2>
+    
+    <p>
+      In an era where visual media dominates communication, education, and digital artistry, having reliable offline access to video content is essential. Whether you are an educator preparing lectures for a classroom with unstable Wi-Fi, a video editor curating historical archive footage, or a creator backing up your own channel library, choosing the right tool to <strong>convert YouTube to MP4</strong> is paramount.
+    </p>
+
+    <p>
+      Welcome to <strong>YouTube to MP4</strong>—an ultra-fast, cloud-powered multimedia utility engineered specifically for creator-owned, public domain, and Creative Commons content. We have eliminated invasive advertisements, intrusive browser notifications, and dangerous executable bundles to deliver a streamlined, privacy-conscious platform that puts performance and video fidelity first.
+    </p>
+
+    <h3>Why MP4 Remains the Universal Video Standard</h3>
+    <p>
+      Digital video is encapsulated inside container files. While modern platforms experiment with alternatives such as WebM and Matroska (MKV), the <strong>MPEG-4 Part 14 (MP4)</strong> container remains universally dominant. When you convert YouTube to MP4, you ensure that your file can be played smoothly across virtually every electronic device manufactured over the past two decades.
+    </p>
+    <ul>
+      <li><strong>Hardware Silicon Decoding:</strong> Apple Silicon (M1/M2/M3/M4, A-series chips), Qualcomm Snapdragon, Intel Core, and AMD Ryzen processors feature dedicated hardware decoding pipelines specifically optimized for H.264/MP4. Playing an MP4 consumes minimal battery power compared to non-accelerated formats.</li>
+      <li><strong>Universal Operating System Acceptance:</strong> Windows Media Player, QuickTime on macOS, iOS Files, and Android Photos open MP4 files natively without demanding third-party codec packs.</li>
+      <li><strong>Video Editing Compatibility:</strong> Major creative suites like Adobe Premiere Pro, DaVinci Resolve, Final Cut Pro, and CapCut accept MP4 timelines instantly without requiring tedious transcode steps.</li>
+    </ul>
+
+    <h3>Understanding YouTube Video Resolutions: 720p, 1080p, and 4K</h3>
+    <p>
+      Our advanced conversion engine gives you granular control over export resolution. Here is how to pick the right format profile for your specific scenario:
+    </p>
+    <div class="content-table-wrapper">
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Quality Tier</th>
+            <th>Pixel Matrix</th>
+            <th>Optimal Usage Scenario</th>
+            <th>Typical File Size (10 min)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>360p Fast</strong></td>
+            <td>640 &times; 360</td>
+            <td>Low-bandwidth mobile data, quick audio reference</td>
+            <td>~25 MB</td>
+          </tr>
+          <tr>
+            <td><strong>720p HD</strong></td>
+            <td>1280 &times; 720</td>
+            <td>Messaging apps, quick email attachments, smartphones</td>
+            <td>~120 MB</td>
+          </tr>
+          <tr>
+            <td><strong>1080p Full HD</strong></td>
+            <td>1920 &times; 1080</td>
+            <td>Desktop monitors, school presentations, editing projects</td>
+            <td>~350 MB</td>
+          </tr>
+          <tr>
+            <td><strong>4K Ultra HD</strong></td>
+            <td>3840 &times; 2160</td>
+            <td>Home theater displays, 4K TVs, archival mastering</td>
+            <td>~1,200 MB</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>How Our Cloud Processing Engine Works Under the Hood</h3>
+    <p>
+      Streaming video services do not host monolithic MP4 files for high-resolution streams. Instead, resolutions above 720p are served via <em>Dynamic Adaptive Streaming over HTTP (DASH)</em>. This means the 1080p video stream is delivered as a silent video chunk, while the audio is delivered via a completely separate stream.
+    </p>
+    <p>
+      When you paste a link into our converter:
+    </p>
+    <ol>
+      <li>Our API gateway validates the YouTube URL and contacts our backend cluster.</li>
+      <li>The engine extracts the pristine video stream alongside the highest bitrate AAC/Opus audio track.</li>
+      <li>FFmpeg performs lossless or high-efficiency multiplexing (remuxing) to combine the tracks into an industry-standard MP4 container.</li>
+      <li>The file is staged in an isolated, encrypted temporary cache ready for instant download or in-browser preview via our <a href="/youtube-to-mp4-player">YouTube to MP4 player</a>.</li>
+      <li>Our automated cleanup daemon permanently purges the generated media file within 15 minutes to guarantee strict user privacy.</li>
+    </ol>
+
+    <h3>Supported Hardware & Operating Systems</h3>
+    <p>
+      Because our converter operates completely within modern standards-compliant web browsers, no software installation is required. It runs seamlessly on:
+    </p>
+    <ul>
+      <li><strong>Windows 11 and 10:</strong> Microsoft Edge, Google Chrome, Mozilla Firefox, Brave, and Opera.</li>
+      <li><strong>Apple macOS:</strong> Safari, Chrome, and Arc across MacBook Air, MacBook Pro, and Mac Studio.</li>
+      <li><strong>Apple iOS & iPadOS:</strong> Safari on iPhone 16, 15, 14, 13, and modern iPad Pro/Air models with native Files app integration.</li>
+      <li><strong>Google Android:</strong> Chrome, Samsung Internet, and Firefox on Samsung Galaxy, Google Pixel, and Xiaomi devices.</li>
+      <li><strong>Linux Distributions:</strong> Ubuntu, Fedora, Debian, and Arch via any modern Chromium or Firefox build.</li>
+    </ul>
+
+    <h3>Legal Fair Use and Copyright Compliance</h3>
+    <p>
+      We advocate for the responsible and legal use of digital media tools. Our converter is engineered strictly for:
+    </p>
+    <ul>
+      <li><strong>Creator Self-Archival:</strong> Creators who have lost their original project master files and need to retrieve clean copies from their own YouTube channels.</li>
+      <li><strong>Creative Commons:</strong> Content released by authors under Creative Commons Attribution (CC-BY) licenses, allowing legal reuse and remixing.</li>
+      <li><strong>Public Domain:</strong> Historical newsreels, NASA space exploration broadcasts, and government productions free from copyright restrictions.</li>
+      <li><strong>Explicit Authorization:</strong> Media where the legal copyright holder has granted formal permission for offline viewing.</li>
+    </ul>
+    <p>
+      <em>Notice: Our system will not process DRM-protected streams, commercial rentals, or subscription video-on-demand content.</em>
+    </p>
+
+    <h3>Troubleshooting Tips: Solving Common Conversion Questions</h3>
+    <p>
+      If you experience an issue while attempting to convert YouTube to MP4, check these rapid solutions:
+    </p>
+    <ul>
+      <li><strong>Invalid URL Error:</strong> Ensure the link is a public video or YouTube Short. Links to private videos, unlisted live streams currently broadcasting, or geo-restricted broadcasts cannot be processed.</li>
+      <li><strong>Conversion Timeout:</strong> Excessively long videos (e.g., 10-hour ambient soundscapes) exceed our 2-hour processing threshold to prevent server congestion.</li>
+      <li><strong>Download Does Not Trigger:</strong> If clicking the download button fails, right-click (or long-press on mobile) and select <em>"Save link as..."</em> or test the video in our built-in player first.</li>
+    </ul>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <FaqAccordion items={homeFaqs} />
+
+  <AdSlot slotType="leaderboard" adSlotId="7654321098" />
+</BaseLayout>

@@ -1,0 +1,63 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Privacy Policy', url: '/privacy-policy' }
+];
+---
+
+<PageLayout
+  title="Privacy Policy - YouTube to MP4"
+  description="Our strict privacy commitments, GDPR/CCPA compliance, zero persistent logs, and ephemeral media deletion procedures."
+  breadcrumbs={breadcrumbs}
+  canonical="https://ytubeconvert.com/privacy-policy"
+>
+  <h1>Privacy Policy</h1>
+  <p><em>Last updated: October 2026</em></p>
+
+  <p>
+    At <strong>YouTube to MP4</strong> ("we", "our", or "the Service"), we believe in privacy by design. We understand that users value confidentiality when using web utilities. This Privacy Policy outlines what minimal information we collect, how it is handled, and our commitment to zero data monetization.
+  </p>
+
+  <h2>1. Information We Do NOT Collect</h2>
+  <ul>
+    <li><strong>No User Accounts:</strong> We do not ask for your name, email, phone number, or passwords to use the converter.</li>
+    <li><strong>No Stored Conversion History:</strong> We do not maintain a permanent database tracking which videos an IP address converted.</li>
+    <li><strong>No Persistent Media Files:</strong> All converted audio and video streams are stored in ephemeral directories and are permanently deleted within 15 minutes.</li>
+  </ul>
+
+  <h2>2. Technical Information Collected Automatically</h2>
+  <p>
+    When you access our website, standard web server logs may temporarily capture:
+  </p>
+  <ul>
+    <li>Your IP address (used solely in memory for real-time rate limiting, DDoS mitigation via Cloudflare, and geo-routing).</li>
+    <li>Browser user-agent, operating system version, and language preference.</li>
+    <li>Timestamp and HTTP status code of requests.</li>
+  </ul>
+
+  <h2>3. Cookies and Google Consent Mode v2</h2>
+  <p>
+    We utilize cookies in accordance with European General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA) standards.
+  </p>
+  <ul>
+    <li><strong>Strictly Necessary:</strong> Storing your theme preference (light or dark mode) and your cookie consent decision.</li>
+    <li><strong>Advertising / Analytics:</strong> We implement Google Consent Mode v2. Non-essential cookies and Google AdSense are disabled by default until you grant explicit consent via our banner.</li>
+  </ul>
+
+  <h2>4. Cloudflare Security Services</h2>
+  <p>
+    Our website uses Cloudflare for DDoS protection, SSL encryption, and Cloudflare Turnstile bot verification. Turnstile verifies that you are a legitimate human user without presenting intrusive image puzzles, and does not harvest personal tracking cookies across third-party websites.
+  </p>
+
+  <h2>5. Your Rights Under GDPR & CCPA</h2>
+  <p>
+    Depending on your geographical location, you have the right to request information regarding whether personal data is processed, object to processing, or request deletion. Because we store zero personal identifiers tied to individuals, we process practically no personal profile data.
+  </p>
+
+  <h2>6. Inquiries</h2>
+  <p>
+    For privacy-related questions, contact us at <code>privacy@youtubetomp4.org</code>.
+  </p>
+</PageLayout>

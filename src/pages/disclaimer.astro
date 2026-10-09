@@ -1,0 +1,35 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Disclaimer', url: '/disclaimer' }
+];
+---
+
+<PageLayout
+  title="Legal Disclaimer & Trademark Notices - YouTube to MP4"
+  description="Important legal statements, fair use declarations, and third-party trademark disclaimers."
+  breadcrumbs={breadcrumbs}
+  canonical="https://ytubeconvert.com/disclaimer"
+>
+  <h1>Legal Disclaimer</h1>
+
+  <h2>1. Trademark Notice</h2>
+  <p>
+    <strong>YouTube</strong> is a registered trademark of Google LLC. The website <strong>YouTube to MP4</strong> (https://ytubeconvert.com) is an independent, third-party technical utility. We are NOT affiliated with, sponsored by, endorsed by, or partnered with YouTube, Google LLC, Alphabet Inc., or any of their corporate subsidiaries. Any reference to "YouTube" is solely for descriptive and nominative fair-use purposes to describe the compatibility of our format transcode tools.
+  </p>
+
+  <h2>2. Fair Use & Copyright Responsibility</h2>
+  <p>
+    The tools provided on this site are designed to enable lawful format shifting and archival preservation under established legal doctrines such as the U.S. Fair Use Doctrine (17 U.S.C. &sect; 107) and international equivalents.
+  </p>
+  <p>
+    Users bear 100% legal responsibility for ensuring that their use of our conversion utilities complies with copyright legislation in their respective jurisdictions. You may not use this tool to download copyrighted works without permission.
+  </p>
+
+  <h2>3. Non-Circumvention Statement</h2>
+  <p>
+    Our service does not provide tools, keys, or software designed to crack, decrypt, or circumvent Digital Rights Management (DRM) technologies (including Widevine, FairPlay, or PlayReady). DRM-encrypted media streams are automatically rejected by our API gateway.
+  </p>
+</PageLayout>

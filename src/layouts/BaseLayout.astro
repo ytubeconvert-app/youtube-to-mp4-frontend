@@ -1,0 +1,56 @@
+---
+import SeoHead from '../components/SeoHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import { languages, type SupportedLanguage } from '../i18n/ui';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  lang?: SupportedLanguage;
+  ogType?: 'website' | 'article';
+  image?: string;
+  jsonLd?: Record<string, any> | Array<Record<string, any>>;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  lang = 'en',
+  ogType = 'website',
+  image,
+  jsonLd
+} = Astro.props;
+
+const dir = languages[lang]?.dir || 'ltr';
+const client = import.meta.env.PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-0000000000000000';
+---
+
+<!DOCTYPE html>
+<html lang={lang} dir={dir} data-adsense-client={client}>
+  <SeoHead
+    title={title}
+    description={description}
+    canonical={canonical}
+    lang={lang}
+    ogType={ogType}
+    image={image}
+    jsonLd={jsonLd}
+  />
+  <body>
+    <Header lang={lang} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <CookieBanner lang={lang} />
+
+    <script is:inline define:vars={{ apiUrl: import.meta.env.PUBLIC_API_URL || '/api' }}>
+      window.API_BASE_URL = apiUrl;
+    </script>
+  </body>
+</html>

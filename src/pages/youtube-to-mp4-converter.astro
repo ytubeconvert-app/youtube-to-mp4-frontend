@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import VideoPlayer from '../components/VideoPlayer.astro';
+import FaqAccordion, { type FaqItem } from '../components/FaqAccordion.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'YouTube to MP4 Converter', url: '/youtube-to-mp4-converter' }
+];
+
+const faqs: FaqItem[] = [
+  {
+    question: "How does this YouTube to MP4 converter maintain audio synchronization?",
+    answer: "Our converter utilizes container-level muxing via FFmpeg to interleave H.264 video frames with AAC audio timestamps precisely at millisecond accuracy, ensuring zero desynchronization."
+  },
+  {
+    question: "Can I convert YouTube Shorts with this converter?",
+    answer: "Yes, our YouTube to MP4 converter handles standard landscape videos, vertical Shorts, and educational clips with identical speed and high resolution."
+  },
+  {
+    question: "Is there a file conversion queue limit?",
+    answer: "Our distributed cloud architecture processes files concurrently so you rarely encounter long wait queues during peak hours."
+  }
+];
+---
+
+<BaseLayout
+  title="YouTube to MP4 Converter - Fast, Free & HD Video Conversion"
+  description="Convert YouTube videos with our ultra-fast online YouTube to MP4 converter. Supports 1080p, 4K, and 720p without registration or software downloads."
+  canonical="https://ytubeconvert.com/youtube-to-mp4-converter"
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <Hero h1Title="YouTube to MP4 Converter" defaultQuality="1080p" />
+  <HowItWorks />
+  <VideoPlayer />
+  <FeatureCards />
+
+  <section class="container content-section">
+    <h2>The Leading Online YouTube to MP4 Converter for High-Definition Video</h2>
+    <p>
+      Looking for a dependable <strong>YouTube to MP4 converter</strong> that doesn't bombard your screen with pop-under ads, suspicious redirect URLs, or arbitrary quality caps? You have arrived at the right place.
+    </p>
+    <p>
+      Our web-based conversion utility transforms YouTube videos into pristine MP4 video files in seconds. Operating directly in your web browser, our serverless architecture extracts and multiplexes the highest available bitrates for 720p, 1080p Full HD, and 4K Ultra HD files, giving you unmatched visual and audio clarity for your offline media projects.
+    </p>
+
+    <h3>Why an Online Web Converter Beats Desktop Software</h3>
+    <p>
+      In previous years, users often had to install bulky third-party desktop converters that came bundled with bloatware, unwanted toolbars, or resource-heavy background services. Today, our cloud-powered converter performs all CPU-intensive video multiplexing in secure cloud containers, delivering complete benefits:
+    </p>
+    <ul>
+      <li><strong>Zero Battery Drain:</strong> Your phone or laptop processor does zero heavy transcoding; our cloud servers handle 100% of the computing workload.</li>
+      <li><strong>Zero Security Risk:</strong> Never run untrusted `.exe` or `.pkg` installers on your workstation. Everything executes inside the secure browser sandbox.</li>
+      <li><strong>Always Updated:</strong> YouTube routinely modifies its video delivery protocols; our server backend updates dynamically so your conversions never break.</li>
+    </ul>
+  </section>
+
+  <FaqAccordion items={faqs} />
+</BaseLayout>

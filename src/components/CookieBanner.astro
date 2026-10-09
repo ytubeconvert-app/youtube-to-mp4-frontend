@@ -1,0 +1,30 @@
+---
+import { useTranslations, type SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<aside id="cookie-banner" class="cookie-banner" aria-label="Cookie Consent Banner" role="region">
+  <h4>{t('cookie_title')}</h4>
+  <p>{t('cookie_desc')}</p>
+  <div class="cookie-actions">
+    <button type="button" id="cookie-accept" class="btn-cookie-accept">
+      {t('cookie_accept')}
+    </button>
+    <button type="button" id="cookie-reject" class="btn-cookie-reject">
+      {t('cookie_reject')}
+    </button>
+    <a href="/cookie-policy" style="font-size:0.8rem; color:var(--text-muted); align-self:center; margin-left:auto;" aria-label="Learn more about our cookie policy">
+      Cookie Policy
+    </a>
+  </div>
+</aside>
+
+<script>
+  import '../scripts/consent-mode';
+</script>

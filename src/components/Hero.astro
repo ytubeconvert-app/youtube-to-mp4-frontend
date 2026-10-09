@@ -1,0 +1,47 @@
+---
+import { useTranslations, type SupportedLanguage } from '../i18n/ui';
+import ConverterWidget from './ConverterWidget.astro';
+import TrustBadges from './TrustBadges.astro';
+
+interface Props {
+  lang?: SupportedLanguage;
+  h1Title?: string;
+  subtitle?: string;
+  defaultQuality?: string;
+}
+
+const {
+  lang = 'en',
+  h1Title = 'YouTube to MP4',
+  subtitle,
+  defaultQuality = '1080p'
+} = Astro.props;
+
+const t = useTranslations(lang);
+const displaySubtitle = subtitle || t('hero_subtitle');
+---
+
+<section class="hero-section">
+  <div class="hero-bg-mesh" aria-hidden="true"></div>
+  <div class="container">
+    <h1 class="hero-title">
+      <span class="hero-gradient-text">{h1Title}</span>
+      <br />
+      <span class="typing-wrapper">
+        <span id="typing-text">Convert YouTube to MP4 in seconds</span><span class="typing-cursor">|</span>
+      </span>
+    </h1>
+
+    <p class="hero-subtitle">
+      {displaySubtitle}
+    </p>
+
+    <ConverterWidget lang={lang} defaultQuality={defaultQuality} />
+
+    <TrustBadges lang={lang} />
+  </div>
+</section>
+
+<script>
+  import '../scripts/typing-effect';
+</script>

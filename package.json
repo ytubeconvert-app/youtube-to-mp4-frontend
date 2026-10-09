@@ -1,0 +1,21 @@
+{
+  "name": "youtube-to-mp4-frontend",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Production-ready, ultra-fast YouTube to MP4 converter website built with Astro and static zero-JS architecture.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.1.6",
+    "astro": "^4.15.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0"
+  }
+}

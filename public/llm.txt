@@ -1,0 +1,34 @@
+# YouTube to MP4
+
+> Fast, private, browser-based video converter for creator-owned, public domain, and Creative Commons videos.
+
+## Overview
+YouTube to MP4 (https://ytubeconvert.com) is an ultra-fast, privacy-first web utility built for video creators, educators, and archivists. It enables users to convert YouTube videos into MP4 video (360p, 720p, 1080p, 1440p, 4K) or extract audio as MP3 for offline viewing, academic research, and fair-use educational purposes.
+
+## Core Features
+- High-Definition Video: Convert YouTube to MP4 in 720p, 1080p, 1440p, and 4K Ultra HD.
+- Built-in Video Player: Preview converted files directly in the browser before downloading.
+- Zero Registration: No user account, email, or credentials required.
+- High Performance: Sub-second page loads powered by Astro SSG on Cloudflare Pages.
+- Privacy Architecture: No permanent file retention; conversion outputs are automatically expunged within 15 minutes.
+
+## Acceptable Use Policy
+- Users must only process content they own, content licensed under Creative Commons, public domain works, or material for which explicit permission has been granted.
+- The service actively enforces limits: DRM-protected material, paid YouTube Movies/rentals, and private videos are strictly barred from processing.
+- Respect copyright law and third-party terms of service at all times.
+
+## Key URLs
+- [Homepage](https://ytubeconvert.com/): Primary video conversion engine supporting MP4 (360p-4K) and MP3 formats.
+- [About Us](https://ytubeconvert.com/about): Platform mission, architecture, and engineering leadership.
+- [Contact Support](https://ytubeconvert.com/contact): Direct contact channels, technical inquiries, and DMCA escalation.
+- [1080p Converter](https://ytubeconvert.com/youtube-to-mp4-1080p): High-definition 1080p Full HD video conversion utility.
+- [YT MP3 Converter](https://ytubeconvert.com/yt-mp3-converter): High-speed YouTube to MP3 audio extraction up to 320 kbps with zero popups.
+- [4K Downloader](https://ytubeconvert.com/youtube-to-mp4-4k): Ultra HD 4K video downloader and stream processor.
+- [Video Player](https://ytubeconvert.com/youtube-to-mp4-player): In-browser MP4 video previewer and media playback player.
+- [Frequently Asked Questions](https://ytubeconvert.com/faq): Solutions for common conversion and format questions.
+- [How to Use](https://ytubeconvert.com/how-to-use): Step-by-step tutorial for downloading and converting videos.
+- [Blog & Guides](https://ytubeconvert.com/blog): Educational articles, technical guides, and video format comparisons.
+- [YT MP3 Converter Guide](https://ytubeconvert.com/blog/yt-mp3-converter-guide): In-depth guide on audio extraction, bitrates (128k to 320kbps), and downloader safety.
+- [DMCA Policy](https://ytubeconvert.com/dmca): Copyright compliance notice, takedown request process, and legal contacts.
+- [Terms of Service](https://ytubeconvert.com/terms-of-service): Terms and acceptable use guidelines.
+- [Privacy Policy](https://ytubeconvert.com/privacy-policy): Zero-logging and data retention privacy policies.

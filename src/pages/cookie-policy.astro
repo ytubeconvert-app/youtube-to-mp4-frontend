@@ -1,0 +1,72 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Cookie Policy', url: '/cookie-policy' }
+];
+---
+
+<PageLayout
+  title="Cookie Policy - YouTube to MP4"
+  description="Details regarding the cookies, local storage items, and consent mechanisms employed on YouTube to MP4."
+  breadcrumbs={breadcrumbs}
+  canonical="https://ytubeconvert.com/cookie-policy"
+>
+  <h1>Cookie Policy</h1>
+  <p><em>Last updated: October 2026</em></p>
+
+  <p>
+    This Cookie Policy explains how <strong>YouTube to MP4</strong> uses cookies and similar client-side storage technologies when you visit our website.
+  </p>
+
+  <h2>What Are Cookies?</h2>
+  <p>
+    Cookies are small text files placed on your device by your web browser. Similar technologies include <code>localStorage</code> and <code>sessionStorage</code>, which allow web applications to remember user preferences across sessions.
+  </p>
+
+  <h2>How We Use Storage & Cookies</h2>
+  <div class="content-table-wrapper">
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Key / Cookie</th>
+          <th>Type</th>
+          <th>Duration</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>theme</code></td>
+          <td>localStorage</td>
+          <td>Persistent</td>
+          <td>Remembers your preference between Dark Mode and Light Mode.</td>
+        </tr>
+        <tr>
+          <td><code>user_cookie_consent</code></td>
+          <td>localStorage</td>
+          <td>1 year</td>
+          <td>Remembers whether you accepted or rejected non-essential advertising cookies.</td>
+        </tr>
+        <tr>
+          <td><code>__cf_bm</code> / Turnstile</td>
+          <td>First-Party Cookie</td>
+          <td>30 minutes</td>
+          <td>Cloudflare security token used to distinguish humans from automated spam bots.</td>
+        </tr>
+        <tr>
+          <td>Google AdSense</td>
+          <td>Third-Party Cookie</td>
+          <td>Variable</td>
+          <td>Loaded strictly after your explicit consent to render contextual, non-intrusive advertisements.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Managing Your Cookie Preferences</h2>
+  <p>
+    You can adjust or revoke your cookie choices at any time by clicking the <a href="#" id="cookie-settings-btn">Cookie Preferences</a> link located in the footer of every page, or by clearing cookies via your browser's settings menu.
+  </p>
+</PageLayout>

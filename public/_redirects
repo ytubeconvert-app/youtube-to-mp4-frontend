@@ -1,0 +1,19 @@
+# 301 Permanent Redirects for canonicalization and variations
+/home / 301
+/index.html / 301
+/converter /youtube-to-mp4-converter 301
+/downloader /youtube-to-mp4-downloader 301
+/1080p /youtube-to-mp4-1080p 301
+/4k /youtube-to-mp4-4k 301
+/player /youtube-to-mp4-player 301
+/terms /terms-of-service 301
+/privacy /privacy-policy 301
+/cookies /cookie-policy 301
+/sitemaps /sitemap 301
+/sitemaps.xml /sitemap.xml 301
+/llm /llms 301
+/llm.txt /llms.txt 301
+/ytmp3 /yt-mp3-converter 301
+/yt-mp3 /yt-mp3-converter 301
+/youtube-to-mp3 /yt-mp3-converter 301
+/youtube-to-mp3-converter /yt-mp3-converter 301

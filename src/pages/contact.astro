@@ -1,0 +1,337 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Contact Us', url: '/contact' }
+];
+
+const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
+
+const contactJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Support - YouTube to MP4",
+  "url": "https://ytubeconvert.com/contact",
+  "description": "Reach the YouTube to MP4 technical support, copyright compliance, and engineering team.",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "YouTube to MP4",
+    "url": "https://ytubeconvert.com",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Support",
+      "email": "ytubeconvert@gmail.com",
+      "availableLanguage": ["English", "Spanish", "Hindi", "French", "German", "Portuguese"]
+    }
+  }
+};
+---
+
+<PageLayout
+  title="Contact Us - Technical Support & Inquiries | YouTube to MP4"
+  description="Get in touch with the YouTube to MP4 engineering and customer support team. Submit technical bug reports, DMCA copyright notices, or business inquiries."
+  breadcrumbs={breadcrumbs}
+  canonical="https://ytubeconvert.com/contact"
+  jsonLd={contactJsonLd}
+>
+  <h1>Contact Support & Engineering</h1>
+  <p>
+    Welcome to the <strong>YouTube to MP4</strong> communication center. Whether you are encountering an unexpected video multiplexing glitch, have inquiries regarding our integrated HTML5 preview player, need to deliver a time-sensitive DMCA copyright notice, or wish to explore cloud infrastructure partnerships, our dedicated multimedia engineering and customer assistance team is here to assist you.
+  </p>
+
+  <!-- Department Quick Cards -->
+  <h2>Direct Contact Departments</h2>
+  <div class="responsive-card-grid" style="margin: 1.5rem 0 2.5rem;">
+    <div class="step-card">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+        <div style="width: 40px; height: 40px; border-radius: var(--radius-md); background: rgba(56, 189, 248, 0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin: 0;">General Support</h3>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Assistance & Bugs</span>
+        </div>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+        Conversion failures, audio sync diagnostics, device compatibility, or format issues.
+      </p>
+      <a href="mailto:ytubeconvert@gmail.com?subject=Support%20Inquiry" style="color: var(--accent); font-weight: 600; font-size: 0.9rem; text-decoration: none; word-break: break-all;">
+        ytubeconvert@gmail.com
+      </a>
+    </div>
+
+    <div class="step-card">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+        <div style="width: 40px; height: 40px; border-radius: var(--radius-md); background: rgba(239, 68, 68, 0.15); color: var(--primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin: 0;">DMCA & Legal</h3>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Copyright Requests</span>
+        </div>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+        Authorized copyright takedown requests, URL blacklisting, or statutory DMCA inquiries.
+      </p>
+      <a href="mailto:ytubeconvert@gmail.com?subject=DMCA%20Notice" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; text-decoration: none; word-break: break-all;">
+        ytubeconvert@gmail.com
+      </a>
+    </div>
+
+    <div class="step-card">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+        <div style="width: 40px; height: 40px; border-radius: var(--radius-md); background: rgba(168, 85, 247, 0.15); color: #c084fc; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="12 6 12 12 16 14"></polygon>
+          </svg>
+        </div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin: 0;">Leadership</h3>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Management & Ops</span>
+        </div>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+        Platform leadership, cloud infrastructure, or enterprise API licensing coordination.
+      </p>
+      <a href="mailto:ytubeconvert@gmail.com?subject=Platform%20Management%20Inquiry" style="color: #c084fc; font-weight: 600; font-size: 0.9rem; text-decoration: none; word-break: break-all;">
+        ytubeconvert@gmail.com
+      </a>
+    </div>
+  </div>
+
+  <!-- Interactive Secure Contact Form -->
+  <h2>Direct Message Dispatch Form</h2>
+  <p>
+    Please fill in the verified communication form below. All messages are encrypted in transit via TLS 1.3, reviewed directly by our engineering leads, and addressed in the order received.
+  </p>
+
+  <div class="contact-card">
+    <form id="contact-form" style="display: flex; flex-direction: column; gap: 1.35rem;" novalidate>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1.25rem;">
+        <div>
+          <label for="contact-name" style="display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.9rem;">
+            Full Legal / Display Name <span style="color:var(--danger)">*</span>
+          </label>
+          <input
+            type="text"
+            id="contact-name"
+            name="name"
+            placeholder="e.g., Alex Johnson"
+            required
+            class="contact-input"
+            autocomplete="name"
+          />
+        </div>
+
+        <div>
+          <label for="contact-email" style="display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.9rem;">
+            Your Email Address <span style="color:var(--danger)">*</span>
+          </label>
+          <input
+            type="email"
+            id="contact-email"
+            name="email"
+            placeholder="e.g., alex@example.com"
+            required
+            class="contact-input"
+            autocomplete="email"
+          />
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1.25rem;">
+        <div>
+          <label for="contact-subject" style="display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.9rem;">
+            Inquiry Category <span style="color:var(--danger)">*</span>
+          </label>
+          <select
+            id="contact-subject"
+            name="subject"
+            class="contact-input"
+            required
+          >
+            <option value="general">General Support / Feedback</option>
+            <option value="technical">Technical Support / Conversion Glitch</option>
+            <option value="player">Integrated Video Player Issue</option>
+            <option value="dmca">DMCA / Copyright Infringement Notice</option>
+            <option value="partnership">Infrastructure & Cloud Engineering</option>
+            <option value="feature">Feature Request / Recommendation</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="contact-priority" style="display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.9rem;">
+            Ticket Priority Level
+          </label>
+          <select
+            id="contact-priority"
+            name="priority"
+            class="contact-input"
+          >
+            <option value="normal">Standard Priority (24-48 Hours)</option>
+            <option value="high">High Priority (12-24 Hours)</option>
+            <option value="urgent">Urgent Legal / DMCA Notice (Immediate Review)</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label for="contact-url" style="display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.9rem;">
+          Affected YouTube Video URL <span style="color:var(--text-muted); font-weight:400;">(Optional - helps diagnose extraction errors)</span>
+        </label>
+        <input
+          type="url"
+          id="contact-url"
+          name="videoUrl"
+          placeholder="https://www.youtube.com/watch?v=..."
+          class="contact-input"
+          autocomplete="off"
+        />
+      </div>
+
+      <div>
+        <label for="contact-message" style="display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.9rem;">
+          Message Content & Technical Details <span style="color:var(--danger)">*</span>
+        </label>
+        <textarea
+          id="contact-message"
+          name="message"
+          rows="6"
+          placeholder="Please describe your question or issue in detail, including browser type, device operating system, and error messages if applicable..."
+          required
+          minlength="15"
+          class="contact-input"
+        ></textarea>
+      </div>
+
+      {turnstileKey && (
+        <div class="cf-turnstile" data-sitekey={turnstileKey} data-theme="auto" data-size="flexible"></div>
+      )}
+
+      <div id="contact-alert" class="alert" style="display:none;" role="alert"></div>
+
+      <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+        <button type="submit" id="contact-submit" class="btn-convert contact-submit-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          <span>Submit Inquiry</span>
+        </button>
+
+        <a
+          id="mailto-fallback-link"
+          href="mailto:ytubeconvert@gmail.com?subject=Website%20Inquiry"
+          style="font-size: 0.875rem; color: var(--text-secondary); text-decoration: underline;"
+          aria-label="Open your email client to send message to ytubeconvert@gmail.com"
+        >
+          Open email client to send message directly &rarr;
+        </a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Helpful Guidelines & FAQs Before Contacting -->
+  <h2>Before Submitting: Common Solutions & Troubleshooting</h2>
+  <p>
+    To save your valuable time, please consult the following solutions to frequently asked operational questions before sending a support dispatch:
+  </p>
+
+  <div class="step-card" style="margin-bottom: 1.5rem;">
+    <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">1. The Video Download or Conversion Button Does Not Respond</h3>
+    <p style="font-size: 0.925rem; color: var(--text-secondary); margin: 0;">
+      Ensure the video URL is fully public. Content restricted by age gates, regional geoblocking, private channel settings, or paid membership paywalls cannot be processed by our automated cloud extraction nodes. Furthermore, verify that your browser does not have aggressive script-blocking extensions blocking Cloudflare verification tokens.
+    </p>
+  </div>
+
+  <div class="step-card" style="margin-bottom: 1.5rem;">
+    <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">2. Why Does High-Definition Video (1080p or 4K) Take Longer to Prepare?</h3>
+    <p style="font-size: 0.925rem; color: var(--text-secondary); margin: 0;">
+      YouTube distributes 1080p Full HD and 4K Ultra HD streams using DASH (Dynamic Adaptive Streaming over HTTP), which transmits video and audio tracks in completely separate streams. Our cloud backend must download both high-bandwidth payloads, execute server-side FFmpeg audio/video multiplexing, and package the resultant MP4 container losslessly. This process requires approximately 15 to 45 seconds depending on overall video duration.
+    </p>
+  </div>
+
+  <div class="step-card" style="margin-bottom: 1.5rem;">
+    <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">3. HTTP 429 Too Many Requests Notice</h3>
+    <p style="font-size: 0.925rem; color: var(--text-secondary); margin: 0;">
+      To protect our server clusters from abusive scraping and denial-of-service botnets, each IP address is allotted a dynamic quota of concurrent conversions per minute. If you hit this security threshold, simply pause for 60 seconds before initiating subsequent file tasks.
+    </p>
+  </div>
+
+  <div class="step-card" style="margin-bottom: 1.5rem;">
+    <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">4. Mandatory Formalities for DMCA Copyright Takedowns</h3>
+    <p style="font-size: 0.925rem; color: var(--text-secondary); margin: 0;">
+      If you are a copyright owner or authorized legal representative filing an infringement notice pursuant to 17 U.S.C. &sect; 512, your submission must include exact target YouTube URLs, proof of copyright ownership, statement of good-faith belief, and physical or electronic signature. Please direct all statutory legal notices to <code>ytubeconvert@gmail.com</code> with the subject header <em>"DMCA Takedown Notice"</em>.
+    </p>
+  </div>
+
+  <h2>Response Standards, Privacy & Operating Schedule</h2>
+  <p>
+    Our technical administration office operates Monday through Friday, 08:00 to 18:00 UTC. While routine inquiries are addressed within 24 to 48 business hours, urgent copyright takedowns and critical security disclosures are continuously monitored and expedited.
+  </p>
+  <p>
+    <strong>Privacy Commitment:</strong> When communicating with us, your email address, transmitted names, and message payloads are utilized strictly to resolve your immediate inquiry. We do not store your communication logs in marketing mailing lists, nor do we sell or disclose communication histories to advertising third parties.
+  </p>
+
+  <script is:inline>
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('contact-submit');
+    const alertBox = document.getElementById('contact-alert');
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        alertBox.style.display = 'none';
+
+        const nameInput = document.getElementById('contact-name');
+        const emailInput = document.getElementById('contact-email');
+        const messageInput = document.getElementById('contact-message');
+
+        if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
+          alertBox.className = 'alert alert-danger';
+          alertBox.textContent = 'Please fill out all mandatory fields before sending.';
+          alertBox.style.display = 'block';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        const originalBtnContent = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="spinner" aria-hidden="true"></span> Transmitting message...';
+
+        const formData = new FormData(form);
+        const payload = Object.fromEntries(formData.entries());
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) throw new Error(data.error || 'Server endpoint returned an error.');
+
+          alertBox.className = 'alert alert-success';
+          alertBox.textContent = 'Thank you! Your message has been received by our engineering team. We will respond to ' + emailInput.value + ' shortly.';
+          alertBox.style.display = 'block';
+          form.reset();
+        } catch (err) {
+          // Graceful fallback to client-side mailto if backend endpoint is in static SSG preview
+          alertBox.className = 'alert alert-warning';
+          alertBox.innerHTML = 'Direct server relay unavailable in static mode. We have prepared an email for you: <a href="mailto:ytubeconvert@gmail.com?subject=' + encodeURIComponent(payload.subject || 'Support Ticket') + '&body=' + encodeURIComponent('From: ' + payload.name + ' (' + payload.email + ')\n\n' + (payload.videoUrl ? 'URL: ' + payload.videoUrl + '\n\n' : '') + payload.message) + '" style="font-weight:700; color:var(--text-primary); text-decoration:underline;" aria-label="Send email directly to ytubeconvert@gmail.com">Send email directly to ytubeconvert@gmail.com</a>';
+          alertBox.style.display = 'block';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnContent;
+        }
+      });
+    }
+  </script>
+</PageLayout>

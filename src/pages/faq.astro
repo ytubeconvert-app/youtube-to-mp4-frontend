@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FaqAccordion, { type FaqItem } from '../components/FaqAccordion.astro';
+import AdSlot from '../components/AdSlot.astro';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'FAQ', url: '/faq' }
+];
+
+const faqs: FaqItem[] = [
+  {
+    question: "1. What is YouTube to MP4 and how does it work?",
+    answer: "YouTube to MP4 is a free, web-based media conversion utility that allows creators and researchers to convert permitted YouTube video streams into high-definition MP4 video files (360p, 720p, 1080p, 1440p, 4K) or extract audio tracks as MP3s directly in the browser."
+  },
+  {
+    question: "2. Is converting YouTube videos to MP4 legal?",
+    answer: "Converting YouTube videos is legally permitted when you download videos you personally created, content in the public domain, or material licensed under Creative Commons (CC-BY). You must never download commercial copyrighted material without explicit permission or attempt to bypass DRM protections."
+  },
+  {
+    question: "3. How do I convert YouTube to MP4 on iPhone or iPad?",
+    answer: "Copy the YouTube video link from the YouTube app, open Safari, navigate to our site, paste the link, choose your resolution (1080p or 720p), and tap Convert. When finished, Safari's download manager will prompt you to save the file to your Files app, from where you can export it to your Photos camera roll."
+  },
+  {
+    question: "4. How do I convert YouTube to MP4 on Android devices?",
+    answer: "Open YouTube, tap Share > Copy link, then launch Chrome or Firefox on your Android device. Paste the link into our converter, choose your resolution, and tap Convert. The MP4 file will download directly to your 'Downloads' folder."
+  },
+  {
+    question: "5. How do I convert YouTube to MP4 on PC and Mac?",
+    answer: "Open any desktop browser (Chrome, Safari, Edge, Firefox), copy the YouTube video URL from the browser address bar, paste it into our converter box, select your preferred quality profile, and click Convert. Once complete, click Download MP4 to save the video to your computer."
+  },
+  {
+    question: "6. Can I convert YouTube videos to 1080p Full HD?",
+    answer: "Yes! Our platform fully supports 1080p Full HD conversion. We extract the high-bitrate video stream and separate audio stream, merging them losslessly via server-side FFmpeg to deliver full 1920x1080 resolution."
+  },
+  {
+    question: "7. Can I convert YouTube to MP4 in 4K Ultra HD (2160p)?",
+    answer: "Yes, provided the original video was uploaded to YouTube in 4K. Our converter can extract and package the 3840x2160 stream into a high-fidelity MP4 file with crisp 8.3-megapixel visual fidelity."
+  },
+  {
+    question: "8. Why do some downloaded YouTube videos have no audio on other sites?",
+    answer: "YouTube serves 1080p and 4K video using DASH (Dynamic Adaptive Streaming over HTTP), which isolates video from audio tracks. Basic tools download only the silent video. Our converter automatically muxes both tracks together, guaranteeing full audio fidelity."
+  },
+  {
+    question: "9. Can I extract audio as an MP3 file instead of video?",
+    answer: "Yes. When you paste your URL and the video preview card appears, simply select the 'Audio Only (MP3)' option to extract high-bitrate audio for podcasts, speeches, or music you have rights to."
+  },
+  {
+    question: "10. Do I need to install any software or browser extensions?",
+    answer: "No. The entire process takes place in the cloud through standard web standards. No software, browser extensions, or executable installers are ever required."
+  },
+  {
+    question: "11. How does the built-in YouTube to MP4 player work?",
+    answer: "Our built-in HTML5 video player lets you preview and play the converted MP4 file right on our site before downloading. This allows you to verify audio-video sync, resolution, and clip accuracy."
+  },
+  {
+    question: "12. Is this converter completely free to use?",
+    answer: "Yes, our service is 100% free with no hidden fees, premium tiers, or subscription requirements."
+  },
+  {
+    question: "13. Will there be any watermarks on the downloaded videos?",
+    answer: "None whatsoever. We never modify, overlay, or insert watermarks, logos, or advertising into your converted files."
+  },
+  {
+    question: "14. What is the maximum video length supported?",
+    answer: "To ensure fair server resource allocation and prevent abusive denial-of-service, our system supports videos up to 2 hours (120 minutes) in duration."
+  },
+  {
+    question: "15. How long are temporary files stored on your servers?",
+    answer: "We adhere to a strict ephemeral data policy. All temporary video conversions are permanently and automatically deleted from our server cache within 15 minutes."
+  },
+  {
+    question: "16. Can I convert private or age-restricted YouTube videos?",
+    answer: "No. Our converter can only process publicly available video links. Private videos and paid rentals cannot be accessed or converted."
+  },
+  {
+    question: "17. Does your service bypass digital rights management (DRM)?",
+    answer: "No. We strictly forbid and actively block the processing of DRM-protected content, paid movies, or subscription-gated material."
+  },
+  {
+    question: "18. What should I do if I receive a 429 Too Many Requests error?",
+    answer: "A 429 error indicates that your IP address has exceeded our per-minute rate limit. Simply wait 60 seconds before initiating another conversion."
+  },
+  {
+    question: "19. Does your converter support high-framerate 60 fps videos?",
+    answer: "Yes. If the source video was uploaded in 720p60, 1080p60, or 4K60, our encoder preserves the full 60 frames-per-second fluidity."
+  },
+  {
+    question: "20. How do I report a copyright infringement or request a takedown?",
+    answer: "We comply fully with the Digital Millennium Copyright Act (DMCA). Copyright owners may submit takedown requests to our designated copyright agent via our DMCA page or by emailing ytubeconvert@gmail.com."
+  },
+  {
+    question: "21. What web browser works best with your converter?",
+    answer: "Our site adheres to modern W3C standards and functions smoothly across Google Chrome, Safari, Mozilla Firefox, Microsoft Edge, Brave, and Opera."
+  },
+  {
+    question: "22. How does your service protect user privacy?",
+    answer: "We do not require user accounts, do not log personal video URLs into persistent databases, use HTTPS TLS 1.3 encryption across all connections, and purge all converted media within 15 minutes."
+  }
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.answer
+    }
+  }))
+};
+---
+
+<BaseLayout
+  title="Frequently Asked Questions (FAQ) - YouTube to MP4"
+  description="Comprehensive 20+ question knowledgebase answering everything about converting YouTube to MP4, 1080p/4K settings, legality, device instructions, and audio sync."
+  canonical="https://ytubeconvert.com/faq"
+  jsonLd={faqJsonLd}
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <div class="container content-section" style="padding-top: 1rem;">
+    <FaqAccordion
+      items={faqs}
+      title="YouTube to MP4 Knowledge Base & FAQ"
+      subtitle="Find detailed technical and operational answers to all your video conversion questions."
+    />
+
+    <AdSlot slotType="responsive" adSlotId="5566778899" />
+  </div>
+</BaseLayout>

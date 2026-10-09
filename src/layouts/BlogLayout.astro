@@ -1,0 +1,112 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import AdSlot from '../components/AdSlot.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  author: string;
+  readingTime: string;
+  category: string;
+  tags: string[];
+  slug: string;
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  author,
+  readingTime,
+  category,
+  tags,
+  slug
+} = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://ytubeconvert.com';
+const postUrl = `${siteUrl}/blog/${slug}`;
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Person",
+    "name": author,
+    "jobTitle": "Multimedia Systems Engineer"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "YouTube to MP4",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/favicon.svg`
+    }
+  },
+  "datePublished": pubDate.toISOString(),
+  "dateModified": (updatedDate || pubDate).toISOString(),
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": postUrl
+  }
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Blog', url: '/blog' },
+  { name: title, url: `/blog/${slug}` }
+];
+---
+
+<BaseLayout
+  title={`${title} | YouTube to MP4 Guide`}
+  description={description}
+  canonical={postUrl}
+  ogType="article"
+  jsonLd={articleJsonLd}
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <article class="container content-section" style="max-width: 820px; padding-top: 1rem;">
+    <header style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
+      <div style="display:flex; gap:0.5rem; align-items:center; margin-bottom: 0.75rem;">
+        <span class="quality-badge" style="background:var(--accent); color:#000;">{category}</span>
+        <span style="font-size:0.85rem; color:var(--text-muted);">{readingTime}</span>
+      </div>
+      <h1 style="font-size: clamp(1.8rem, 4vw, 2.75rem); line-height: 1.25; margin-bottom: 1rem;">
+        {title}
+      </h1>
+      <div style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary); font-size: 0.9rem; flex-wrap: wrap;">
+        <span>By <strong>{author}</strong></span>
+        <span>•</span>
+        <time datetime={pubDate.toISOString()}>Published: {pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
+        {updatedDate && (
+          <>
+            <span>•</span>
+            <time datetime={updatedDate.toISOString()}>Updated: {updatedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
+          </>
+        )}
+      </div>
+    </header>
+
+    <AdSlot slotType="responsive" adSlotId="3456789012" />
+
+    <div class="article-body">
+      <slot />
+    </div>
+
+    <div class="step-card" style="margin-top: clamp(2rem, 5vw, 3rem);">
+      <h4>About the Author</h4>
+      <p style="font-size: 0.95rem; color: var(--text-secondary); margin-top: 0.5rem;">
+        {author} is a veteran multimedia systems engineer specializing in video codecs, progressive web applications, and digital media preservation.
+      </p>
+    </div>
+
+    <AdSlot slotType="leaderboard" adSlotId="4567890123" />
+  </article>
+</BaseLayout>
