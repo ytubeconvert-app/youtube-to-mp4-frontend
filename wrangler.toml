@@ -2,7 +2,8 @@
 name = "youtube-to-mp4-frontend"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "./dist"
+[assets]
+directory = "./dist"
 
 [vars]
 # Configure your backend API endpoint URL here
