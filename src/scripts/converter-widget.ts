@@ -135,7 +135,12 @@ export function initConverterWidget() {
 
     for (const base of candidates) {
       const cleanBase = base.replace(/\/+$/, '');
-      const fullUrl = `${cleanBase}${cleanEndpoint}`;
+      let fullUrl = `${cleanBase}${cleanEndpoint}`;
+      if (cleanBase.endsWith('/api') && cleanEndpoint.startsWith('/api/')) {
+        fullUrl = `${cleanBase}${cleanEndpoint.substring(4)}`;
+      } else if (!cleanBase.endsWith('/api') && !cleanEndpoint.startsWith('/api/') && !cleanEndpoint.startsWith('/health')) {
+        fullUrl = `${cleanBase}/api${cleanEndpoint}`;
+      }
 
       try {
         const res = await fetch(fullUrl, {
@@ -370,7 +375,7 @@ export function initConverterWidget() {
         startBtn.disabled = false;
         startBtn.textContent = `Download ${selectedFormat.toUpperCase()}`;
       }
-      showAlert(err.message || 'Error occurred starting conversion. Please check backend server on port 8787.', 'danger');
+      showAlert(err.message || 'Error occurred starting conversion. Please check backend server.', 'danger');
     }
   }
 
@@ -384,7 +389,7 @@ export function initConverterWidget() {
         <div class="progress-bar-container">
           <div id="progress-bar-fill" class="progress-bar-fill" style="width: 15%;"></div>
         </div>
-        <small style="color:var(--text-muted)">Processing video and audio tracks via yt-dlp/ffmpeg engine on port 8787.</small>
+        <small style="color:var(--text-muted)">Processing video and audio tracks via high-speed media engine.</small>
       </div>
     `;
 
@@ -426,7 +431,7 @@ export function initConverterWidget() {
       } catch (pollErr: any) {
         clearInterval(pollInterval);
         pollInterval = null;
-        showAlert('Lost connection to backend server on port 8787 during conversion.', 'danger');
+        showAlert('Lost connection to backend server during conversion.', 'danger');
       }
     }, 1500);
   }
