@@ -6,6 +6,9 @@ compatibility_flags = ["nodejs_compat"]
 directory = "./dist"
 
 [vars]
-# Configure your backend API endpoint URL here
-PUBLIC_API_URL = "/api"
+# Live Render backend API
+PUBLIC_API_URL = "https://youtube-to-mp4-backend.onrender.com"
+# Content Security Policy allowed backend endpoint (applied in public/_headers and dist/_headers)
+CSP_BACKEND_URL = "https://youtube-to-mp4-backend.onrender.com"
 # PUBLIC_TURNSTILE_SITE_KEY = ""
+

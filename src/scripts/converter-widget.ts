@@ -30,8 +30,8 @@ export function initConverterWidget() {
 
   if (!form || !urlInput || !convertBtn) return;
 
-  // Active API base resolution: prefers Vite env / window.API_BASE_URL / Cloudflare Worker / direct port 8787
-  let activeApiBase = (window as any).API_BASE_URL || (import.meta as any).env?.PUBLIC_API_URL || '/api';
+  // Active API base resolution: prefers Vite env / window.API_BASE_URL / live Render backend / port 8787
+  let activeApiBase = (window as any).API_BASE_URL || (import.meta as any).env?.PUBLIC_API_URL || 'https://youtube-to-mp4-backend.onrender.com';
   let isApiBaseLocked = false;
   let currentVideoInfo: VideoInfo | null = null;
   const rootEl = document.getElementById('converter-root');
@@ -116,6 +116,8 @@ export function initConverterWidget() {
     const rawCandidates = [
       (window as any).API_BASE_URL,
       (import.meta as any).env?.PUBLIC_API_URL,
+      'https://youtube-to-mp4-backend.onrender.com',
+      'https://youtube-to-mp4-backend.onrender.com/api',
       activeApiBase,
       'http://127.0.0.1:8787/api',
       'http://localhost:8787/api',
