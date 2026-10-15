@@ -39,18 +39,8 @@ export function initConverterWidget() {
   let selectedFormat = initialQuality || '1080p';
   let pollInterval: any = null;
 
-  // Handle Clipboard Paste Button
-  pasteBtn?.addEventListener('click', async () => {
-    try {
-      if (navigator.clipboard && navigator.clipboard.readText) {
-        const text = await navigator.clipboard.readText();
-        urlInput.value = text.trim();
-        urlInput.focus();
-      }
-    } catch {
-      urlInput.focus();
-    }
-  });
+  let lastProcessedVideoId: string | null = null;
+  let autoFetchDebounceTimer: any = null;
 
   // Extract YouTube 11-char Video ID from any URL permutation
   function extractYoutubeId(inputUrl: string): string | null {
@@ -103,28 +93,38 @@ export function initConverterWidget() {
   }
 
   function setLoading(isLoading: boolean, text: string = 'Processing...') {
-    convertBtn!.disabled = isLoading;
+    if (!convertBtn) return;
+    convertBtn.disabled = isLoading;
     if (isLoading) {
-      convertBtn!.innerHTML = `<span class="spinner" aria-hidden="true"></span> <span>${text}</span>`;
+      convertBtn.innerHTML = `<span class="spinner" aria-hidden="true"></span> <span>${text}</span>`;
     } else {
-      convertBtn!.innerHTML = `<span>Convert</span> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+      convertBtn.innerHTML = `<span>Convert</span> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
     }
   }
 
   // Resilient API Fetcher: automatically detects port 8787, environment URL, or proxied /api
   async function callApi(endpoint: string, options: RequestInit = {}): Promise<Response> {
-    const rawCandidates = [
+    const isLocalhost = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    const localCandidates = [
+      'http://127.0.0.1:8787/api',
+      'http://localhost:8787/api',
+      'http://127.0.0.1:8787',
+      'http://localhost:8787'
+    ];
+    const remoteCandidates = [
       (window as any).API_BASE_URL,
+      (window as any).RESIDENTIAL_TUNNEL_URL,
       (import.meta as any).env?.PUBLIC_API_URL,
       'https://youtube-to-mp4-backend.onrender.com',
       'https://youtube-to-mp4-backend.onrender.com/api',
       activeApiBase,
-      'http://127.0.0.1:8787/api',
-      'http://localhost:8787/api',
-      'http://127.0.0.1:8787',
-      'http://localhost:8787',
       '/api'
-    ].filter(Boolean);
+    ];
+
+    const rawCandidates = (isLocalhost
+      ? [...localCandidates, ...remoteCandidates]
+      : [...remoteCandidates, ...localCandidates]
+    ).filter(Boolean);
 
     const candidates = isApiBaseLocked
       ? [activeApiBase]
@@ -151,8 +151,6 @@ export function initConverterWidget() {
           }
         });
 
-        // Only lock if the endpoint is a genuine API response
-        // (404 or 502/504 means the candidate is not a live converter endpoint)
         if (res.ok || res.status === 400 || res.status === 429) {
           activeApiBase = cleanBase;
           isApiBaseLocked = true;
@@ -172,31 +170,19 @@ export function initConverterWidget() {
     throw new Error('Unable to connect to the converter service. Please ensure the backend server is running on port 8787 or set PUBLIC_API_URL.');
   }
 
-  // Phase 1: Fetch Video Details
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  // Core Video Info Fetcher & Renderer
+  async function fetchAndRenderVideoInfo(videoId: string) {
     clearAlert();
     if (pollInterval) {
       clearInterval(pollInterval);
       pollInterval = null;
     }
 
-    const rawUrl = urlInput.value.trim();
-    if (!rawUrl) {
-      showAlert('Please enter or paste a valid YouTube video URL.');
-      return;
-    }
-
-    const videoId = extractYoutubeId(rawUrl);
-    if (!videoId) {
-      showAlert('Invalid URL. Please enter a valid YouTube video, Shorts, or youtu.be link.');
-      return;
-    }
+    lastProcessedVideoId = videoId;
+    setLoading(true, 'Loading video info...');
 
     const turnstileInput = form.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement;
     const turnstileToken = turnstileInput ? turnstileInput.value : '';
-
-    setLoading(true, 'Fetching video info...');
 
     try {
       let videoData: VideoInfo | null = null;
@@ -272,7 +258,115 @@ export function initConverterWidget() {
       setLoading(false);
       showAlert(err.message || 'Error occurred while loading video details. Please check your network and URL.');
     }
+  }
+
+  // Auto-Detect & Automatically Render Video Information
+  function handleAutoDetect(force = false) {
+    const raw = urlInput.value.trim();
+    if (!raw) {
+      lastProcessedVideoId = null;
+      if (statusContainer) statusContainer.style.display = 'none';
+      return;
+    }
+
+    const videoId = extractYoutubeId(raw);
+    if (!videoId) {
+      if (force) {
+        showAlert('Invalid URL. Please enter a valid YouTube video, Shorts, or youtu.be link.');
+      }
+      return;
+    }
+
+    if (videoId === lastProcessedVideoId && currentVideoInfo) {
+      return; // Already fetched and rendered
+    }
+
+    fetchAndRenderVideoInfo(videoId);
+  }
+
+  // 1. Automatic detection when clicking the UI "Paste" Button
+  pasteBtn?.addEventListener('click', async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.readText) {
+        const text = await navigator.clipboard.readText();
+        if (text) {
+          urlInput.value = text.trim();
+          urlInput.focus();
+          handleAutoDetect(true);
+        }
+      } else {
+        urlInput.focus();
+      }
+    } catch {
+      urlInput.focus();
+    }
   });
+
+  // 2. Automatic detection on native paste event (Ctrl+V, Cmd+V, Right-Click -> Paste)
+  urlInput.addEventListener('paste', (e: ClipboardEvent) => {
+    const pastedText = e.clipboardData?.getData('text');
+    if (pastedText) {
+      const vid = extractYoutubeId(pastedText.trim());
+      if (vid) {
+        urlInput.value = pastedText.trim();
+        e.preventDefault();
+        handleAutoDetect(true);
+        return;
+      }
+    }
+    setTimeout(() => {
+      handleAutoDetect(false);
+    }, 40);
+  });
+
+  // 3. Automatic detection as the user types/edits (Debounced 250ms)
+  urlInput.addEventListener('input', () => {
+    clearTimeout(autoFetchDebounceTimer);
+    const val = urlInput.value.trim();
+    if (!val) {
+      lastProcessedVideoId = null;
+      if (statusContainer) statusContainer.style.display = 'none';
+      return;
+    }
+    const vid = extractYoutubeId(val);
+    if (vid && vid !== lastProcessedVideoId) {
+      autoFetchDebounceTimer = setTimeout(() => {
+        handleAutoDetect(false);
+      }, 250);
+    }
+  });
+
+  // 4. Form Submission (Enter key or Convert button click)
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const rawUrl = urlInput.value.trim();
+    if (!rawUrl) {
+      showAlert('Please enter or paste a valid YouTube video URL.');
+      return;
+    }
+    const videoId = extractYoutubeId(rawUrl);
+    if (!videoId) {
+      showAlert('Invalid URL. Please enter a valid YouTube video, Shorts, or youtu.be link.');
+      return;
+    }
+
+    if (currentVideoInfo && currentVideoInfo.id === videoId && statusContainer?.style.display !== 'none') {
+      statusContainer?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+
+    await fetchAndRenderVideoInfo(videoId);
+  });
+
+  // 5. Auto-render from URL parameters on page load (?url=... or ?v=...)
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const initialUrl = params.get('url') || params.get('v');
+    if (initialUrl) {
+      urlInput.value = initialUrl;
+      handleAutoDetect(false);
+    }
+  } catch {}
 
   // Render Video Preview Card & Quality Selector
   function renderVideoPreview(video: VideoInfo) {
