@@ -206,6 +206,60 @@ html, body {
   50% { opacity: 0; }
 }
 
+.hero-typing-lead {
+  font-size: clamp(1.15rem, 3vw, 1.6rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 0.35rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.content-author-box {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  margin-bottom: 2.25rem;
+  padding: 1.1rem 1.35rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.content-author-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--primary-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.content-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.content-author-name {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.content-author-role {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
 /* Converter Form & Input */
 .converter-form {
   display: flex;
@@ -1397,9 +1451,12 @@ html, body {
   display: block;
 }
 
-.cookie-banner h4 {
+.cookie-banner h4,
+.cookie-banner .cookie-banner-title {
   font-size: 1.1rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
+  color: var(--text-primary);
 }
 
 .cookie-banner p {
@@ -1498,7 +1555,9 @@ html, body {
   }
 }
 
-.footer-col h4 {
+.footer-col h3,
+.footer-col h4,
+.footer-col-title {
   font-size: 0.95rem;
   font-weight: 700;
   text-transform: uppercase;

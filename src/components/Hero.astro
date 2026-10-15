@@ -12,7 +12,7 @@ interface Props {
 
 const {
   lang = 'en',
-  h1Title = 'YouTube to MP4',
+  h1Title = 'Convert YouTube to MP4',
   subtitle,
   defaultQuality = '1080p'
 } = Astro.props;
@@ -26,11 +26,13 @@ const displaySubtitle = subtitle || t('hero_subtitle');
   <div class="container">
     <h1 class="hero-title">
       <span class="hero-gradient-text">{h1Title}</span>
-      <br />
+    </h1>
+
+    <div class="hero-typing-lead" aria-hidden="true">
       <span class="typing-wrapper">
         <span id="typing-text">Convert YouTube to MP4 in seconds</span><span class="typing-cursor">|</span>
       </span>
-    </h1>
+    </div>
 
     <p class="hero-subtitle">
       {displaySubtitle}

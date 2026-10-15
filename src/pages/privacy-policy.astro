@@ -9,55 +9,170 @@ const breadcrumbs = [
 
 <PageLayout
   title="Privacy Policy - YouTube to MP4"
-  description="Our strict privacy commitments, GDPR/CCPA compliance, zero persistent logs, and ephemeral media deletion procedures."
+  description="Our comprehensive privacy commitments, GDPR/CCPA compliance, zero persistent logs, ephemeral 15-minute media deletion, and data protection practices."
   breadcrumbs={breadcrumbs}
   canonical="https://ytubeconvert.com/privacy-policy"
 >
   <h1>Privacy Policy</h1>
-  <p><em>Last updated: October 2026</em></p>
+  <p><em>Effective Date: October 2026 | Version 3.2</em></p>
 
   <p>
-    At <strong>YouTube to MP4</strong> ("we", "our", or "the Service"), we believe in privacy by design. We understand that users value confidentiality when using web utilities. This Privacy Policy outlines what minimal information we collect, how it is handled, and our commitment to zero data monetization.
+    At <strong>YouTube to MP4</strong> (accessible via <code>https://ytubeconvert.com</code>, referred to herein as "the Service", "Platform", "we", "us", or "our"), user privacy is not an afterthought—it is the foundational pillar of our system architecture. We understand that individuals seeking fast, reliable multimedia utilities demand complete confidentiality, zero data surveillance, and transparent data handling practices.
+  </p>
+  <p>
+    This Privacy Policy explains in comprehensive legal and technical detail what minimal data is processed when you visit our website, how we enforce an ephemeral data lifecycle, how we adhere to international privacy frameworks (including the European Union General Data Protection Regulation / GDPR, UK GDPR, California Consumer Privacy Act / CCPA as amended by the CPRA, and Brazilian LGPD), and how you can exercise your statutory privacy rights.
   </p>
 
-  <h2>1. Information We Do NOT Collect</h2>
-  <ul>
-    <li><strong>No User Accounts:</strong> We do not ask for your name, email, phone number, or passwords to use the converter.</li>
-    <li><strong>No Stored Conversion History:</strong> We do not maintain a permanent database tracking which videos an IP address converted.</li>
-    <li><strong>No Persistent Media Files:</strong> All converted audio and video streams are stored in ephemeral directories and are permanently deleted within 15 minutes.</li>
-  </ul>
-
-  <h2>2. Technical Information Collected Automatically</h2>
+  <h2>1. Our Privacy-by-Design Ethos &amp; Core Commitments</h2>
   <p>
-    When you access our website, standard web server logs may temporarily capture:
+    Our platform operates under an absolute <strong>Privacy-by-Design</strong> paradigm. We strictly reject the data-harvesting business models prevalent among legacy web converters. Specifically:
   </p>
   <ul>
-    <li>Your IP address (used solely in memory for real-time rate limiting, DDoS mitigation via Cloudflare, and geo-routing).</li>
-    <li>Browser user-agent, operating system version, and language preference.</li>
-    <li>Timestamp and HTTP status code of requests.</li>
+    <li><strong>No User Account Registration:</strong> We do not require you to provide your legal name, email address, physical address, phone number, or payment details. You can access and utilize 100% of our toolset anonymously.</li>
+    <li><strong>No Conversion History Logging:</strong> We do not maintain a persistent database, user profile, or ledger associating specific converted video URLs or queries with specific user IP addresses or browser fingerprints.</li>
+    <li><strong>No Commercial Sale of User Data:</strong> We never sell, lease, rent, monetize, or trade user data or usage metrics to third-party data brokers, marketing conglomerates, or advertisers.</li>
+    <li><strong>Zero Persistent Media Archiving:</strong> We operate an automated ephemeral filesystem. Video and audio files generated during conversion exist exclusively for the brief window required for download delivery and are permanently destroyed within 15 minutes.</li>
   </ul>
 
-  <h2>3. Cookies and Google Consent Mode v2</h2>
+  <h2>2. Categories of Information We Process</h2>
+
+  <h3>A. Information You Voluntarily Provide</h3>
   <p>
-    We utilize cookies in accordance with European General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA) standards.
+    The only personal information we collect is data you voluntarily submit through our direct contact form or email communications:
   </p>
   <ul>
-    <li><strong>Strictly Necessary:</strong> Storing your theme preference (light or dark mode) and your cookie consent decision.</li>
-    <li><strong>Advertising / Analytics:</strong> We implement Google Consent Mode v2. Non-essential cookies and Google AdSense are disabled by default until you grant explicit consent via our banner.</li>
+    <li><strong>Contact Inquiries:</strong> When you send a support ticket or DMCA notification via our <a href="/contact">Contact Page</a> or write to <code>ytubeconvert@gmail.com</code>, we receive your name, email address, subject category, and message body. This information is utilized exclusively to resolve your specific technical inquiry or statutory legal request and is never repurposed for marketing mailing lists.</li>
+    <li><strong>Submitted Video URLs:</strong> When you paste a URL into our conversion input bar, that URL is processed ephemerally in volatile server memory solely to query metadata, extract authorized media streams, and assemble your requested MP4 container. Once processing and delivery conclude, the URL is cleared from working memory.</li>
   </ul>
 
-  <h2>4. Cloudflare Security Services</h2>
+  <h3>B. Technical Information Processed Automatically</h3>
   <p>
-    Our website uses Cloudflare for DDoS protection, SSL encryption, and Cloudflare Turnstile bot verification. Turnstile verifies that you are a legitimate human user without presenting intrusive image puzzles, and does not harvest personal tracking cookies across third-party websites.
+    When your web browser interacts with our servers, automated technical metadata is processed by our edge network infrastructure (Cloudflare) and application backend:
+  </p>
+  <ul>
+    <li><strong>Internet Protocol (IP) Addresses:</strong> Your IP address is processed dynamically in volatile RAM to route network packets, prevent Distributed Denial of Service (DDoS) attacks, detect automated malicious scraping, and enforce our per-minute rate limit (20 conversions per minute). IP addresses are not stored in persistent relational databases linked to your browsing actions.</li>
+    <li><strong>HTTP Request Headers:</strong> Standard technical information transmitted by your browser—including your User-Agent string, browser version, operating system, preferred display language, referring URL, and request timestamp—is utilized to ensure proper HTML/CSS layout rendering and video container compatibility.</li>
+  </ul>
+
+  <h2>3. Ephemeral Media Storage and Automated 15-Minute Purge Protocol</h2>
+  <p>
+    We recognize that video content processed through multimedia converters may contain sensitive personal archives, creator projects, or private research materials. To ensure absolute data confidentiality, we maintain an automated ephemeral storage lifecycle:
+  </p>
+  <ol>
+    <li>When you initiate a conversion, a unique, randomized alphanumeric Job Identifier (e.g., <code>a1b2c3d4e5f6</code>) is generated.</li>
+    <li>Our backend multiplexer stages the resulting MP4 or MP3 file in an isolated, encrypted temporary directory path (<code>/temp_downloads/[jobId].mp4</code>).</li>
+    <li>The file is made available strictly to the user possessing the unique job token for immediate browser preview or local download.</li>
+    <li>An automated background cleaner daemon continuously scans the temporary directory every 60 seconds. Any media file whose creation timestamp exceeds <strong>15 minutes (900 seconds)</strong> is cryptographically unlinked and permanently erased from disk storage.</li>
+    <li>Once purged, the media file is unrecoverable. We maintain no backups, cold storage archives, or historical snapshots of converted files.</li>
+  </ol>
+
+  <h2>4. Cookies, Local Storage &amp; Google Consent Mode v2</h2>
+  <p>
+    Cookies are small alphanumeric text files stored on your device by your web browser. We categorize cookies into two strict classifications:
   </p>
 
-  <h2>5. Your Rights Under GDPR & CCPA</h2>
+  <div class="content-table-wrapper">
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Cookie Classification</th>
+          <th>Purpose &amp; Description</th>
+          <th>Legal Basis &amp; Expiration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Strictly Necessary Cookies</strong></td>
+          <td>Storing your UI theme preference (dark/light mode) and recording your cookie consent banner selection.</td>
+          <td>Legitimate Interest (GDPR Art. 6(1)(f)) / Persistent (Up to 12 months)</td>
+        </tr>
+        <tr>
+          <td><strong>Security Tokens (Cloudflare)</strong></td>
+          <td>Cloudflare security headers and Turnstile verification tokens to prevent botnet attacks and credential stuffing.</td>
+          <td>Legitimate Interest (GDPR Art. 6(1)(f)) / Session to 30 days</td>
+        </tr>
+        <tr>
+          <td><strong>Advertising &amp; Analytics (Optional)</strong></td>
+          <td>Third-party cookies set by Google AdSense to serve relevant advertising and measure aggregated page impressions.</td>
+          <td>Explicit Consent (GDPR Art. 6(1)(a)) / Controlled by user consent banner</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <p>
-    Depending on your geographical location, you have the right to request information regarding whether personal data is processed, object to processing, or request deletion. Because we store zero personal identifiers tied to individuals, we process practically no personal profile data.
+    <strong>Google Consent Mode v2 Compliance:</strong> We have fully implemented Google Consent Mode v2. When visitors from the European Economic Area (EEA), United Kingdom, or California access our website, all advertising cookies, personalization signals, and tracking pixels remain strictly disabled by default until the user explicitly selects "Accept All" or customizes preferences via our cookie banner.
   </p>
 
-  <h2>6. Inquiries</h2>
+  <h2>5. Cloudflare Edge Security &amp; Turnstile Verification</h2>
   <p>
-    For privacy-related questions, contact us at <code>privacy@youtubetomp4.org</code>.
+    Our web application is protected by Cloudflare, Inc. (San Francisco, CA, USA). Cloudflare acts as a reverse proxy, caching static frontend assets (HTML, CSS, JavaScript) across global edge nodes, terminating TLS encryption, and filtering malicious traffic.
   </p>
+  <p>
+    We utilize <strong>Cloudflare Turnstile</strong> on our contact and conversion interfaces to verify that interactions originate from genuine human visitors rather than automated botnets. Unlike legacy CAPTCHAs, Turnstile does not present frustrating image puzzles, does not track users across unrelated websites, and does not harvest personal demographic data.
+  </p>
+
+  <h2>6. Third-Party Advertising (Google AdSense)</h2>
+  <p>
+    To maintain free, open access to our cloud infrastructure without imposing subscription paywalls, we may display third-party advertisements delivered by Google AdSense:
+  </p>
+  <ul>
+    <li>Third-party vendors, including Google, use cookies to serve ads based on prior visits to our website or other sites on the internet.</li>
+    <li>Google's use of advertising cookies enables it and its partners to serve ads based on your visit to our sites and/or other sites on the Internet.</li>
+    <li>Users may opt out of personalized advertising by visiting Google's <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Ads Settings</a> or by utilizing the Network Advertising Initiative opt-out page at <a href="https://optout.networkadvertising.org/" target="_blank" rel="noopener noreferrer">optout.networkadvertising.org</a>.</li>
+  </ul>
+
+  <h2>7. Your Rights Under International Privacy Regulations</h2>
+
+  <h3>A. European Union (GDPR) and United Kingdom (UK GDPR)</h3>
+  <p>
+    If you reside within the European Economic Area or the United Kingdom, you possess statutory rights under Articles 15–22 of the GDPR:
+  </p>
+  <ul>
+    <li><strong>Right of Access (Art. 15):</strong> You have the right to request confirmation as to whether your personal data is processed. Because we maintain zero accounts and delete media within 15 minutes, we hold virtually zero identifiable data.</li>
+    <li><strong>Right to Rectification (Art. 16):</strong> You may request correction of inaccurate contact information you voluntarily submitted.</li>
+    <li><strong>Right to Erasure / "To Be Forgotten" (Art. 17):</strong> You may request the immediate deletion of any email communications or support tickets.</li>
+    <li><strong>Right to Object (Art. 21):</strong> You may object to data processing based on legitimate interests at any time.</li>
+  </ul>
+
+  <h3>B. California Consumer Privacy Act (CCPA / CPRA)</h3>
+  <p>
+    California residents have specific protections under the California Consumer Privacy Act as amended by the California Privacy Rights Act:
+  </p>
+  <ul>
+    <li><strong>Notice at Collection:</strong> We inform users of the categories of data collected and their retention periods at or before collection.</li>
+    <li><strong>Right to Know &amp; Delete:</strong> You have the right to request deletion of personal information collected.</li>
+    <li><strong>"Do Not Sell or Share My Personal Information":</strong> We do not sell your personal data. You can exercise granular cookie preferences through our cookie consent controls.</li>
+    <li><strong>Non-Discrimination:</strong> We never discriminate against any user (in service access, speed, or quality) for exercising their statutory privacy rights.</li>
+  </ul>
+
+  <h2>8. Protection of Children's Privacy (COPPA)</h2>
+  <p>
+    Our service is directed at general audiences and is not intended for children under the age of 13 (or under 16 in the European Union). We do not knowingly solicit, collect, or maintain personal information from children under statutory age thresholds. If we discover that a child under 13 has transmitted personal contact information to our servers, we immediately delete that communication from our systems.
+  </p>
+
+  <h2>9. Data Security &amp; Encryption Architecture</h2>
+  <p>
+    We implement robust administrative, technical, and physical security safeguards to protect data from unauthorized access, alteration, disclosure, or destruction:
+  </p>
+  <ul>
+    <li><strong>Universal TLS 1.3 Transport Encryption:</strong> All data transmitted between your browser and our servers is secured using modern TLS 1.3 cryptographic protocols with perfect forward secrecy.</li>
+    <li><strong>Container Sandboxing:</strong> Video processing jobs run within isolated Docker containers with non-root user permissions, preventing cross-tenant data contamination.</li>
+    <li><strong>Ephemeral RAM Processing:</strong> Sensitive stream tokens and URL strings are held exclusively in volatile memory and never committed to long-term database storage.</li>
+  </ul>
+
+  <h2>10. Changes to This Privacy Policy</h2>
+  <p>
+    We reserve the right to update this Privacy Policy periodically to reflect technological enhancements, operational changes, or statutory legal requirements. Any modifications will be posted directly to this page with an updated "Effective Date" at the top. We encourage users to review this page periodically.
+  </p>
+
+  <h2>11. Contact Our Data Protection Team</h2>
+  <p>
+    If you have any questions, concerns, or formal statutory requests regarding this Privacy Policy or our data protection practices, please contact our Data Protection Officer directly:
+  </p>
+  <ul>
+    <li><strong>Entity:</strong> YouTube to MP4 Operations</li>
+    <li><strong>Official Privacy Email:</strong> <a href="mailto:ytubeconvert@gmail.com?subject=Privacy%20Inquiry">ytubeconvert@gmail.com</a></li>
+    <li><strong>Platform Management:</strong> Kamlesh Mohabe, Proprietor | Software Engineer</li>
+    <li><strong>Web Portal:</strong> <a href="/contact">https://ytubeconvert.com/contact</a></li>
+  </ul>
 </PageLayout>

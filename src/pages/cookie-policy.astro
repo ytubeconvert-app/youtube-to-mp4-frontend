@@ -9,64 +9,273 @@ const breadcrumbs = [
 
 <PageLayout
   title="Cookie Policy - YouTube to MP4"
-  description="Details regarding the cookies, local storage items, and consent mechanisms employed on YouTube to MP4."
+  description="Comprehensive cookie and local storage policy detailing strictly necessary tokens, Google AdSense cookies, Consent Mode v2, and browser opt-out guides."
   breadcrumbs={breadcrumbs}
   canonical="https://ytubeconvert.com/cookie-policy"
 >
-  <h1>Cookie Policy</h1>
-  <p><em>Last updated: October 2026</em></p>
+  <h1>Cookie &amp; Client-Side Storage Policy</h1>
+  <p><em>Effective Date: October 2026 | Version 3.2 | Document Reference: POL-CK-2026-V3</em></p>
 
   <p>
-    This Cookie Policy explains how <strong>YouTube to MP4</strong> uses cookies and similar client-side storage technologies when you visit our website.
+    Welcome to the <strong>YouTube to MP4</strong> Cookie Policy (accessible via <code>https://ytubeconvert.com</code>, referred to throughout this document as "the Service", "Platform", "we", "us", or "our"). This policy provides transparent, precise technical documentation regarding how our web application utilizes HTTP cookies, browser local storage (<code>localStorage</code>), session storage (<code>sessionStorage</code>), and associated client-side data mechanisms.
   </p>
-
-  <h2>What Are Cookies?</h2>
   <p>
-    Cookies are small text files placed on your device by your web browser. Similar technologies include <code>localStorage</code> and <code>sessionStorage</code>, which allow web applications to remember user preferences across sessions.
+    We believe that high-utility web tools should never rely on covert tracking or surreptitious surveillance. In compliance with international data privacy legislation—including the European Union ePrivacy Directive (Directive 2002/58/EC as amended), the General Data Protection Regulation (GDPR / Regulation EU 2016/679), the UK Data Protection Act, and the California Consumer Privacy Act (CCPA as amended by the CPRA)—this policy outlines exactly what identifiers are stored on your device, the legitimate purpose and duration of each token, and the exact steps you can take to control or disable them at any time.
   </p>
 
-  <h2>How We Use Storage & Cookies</h2>
+  <h2>1. What Are Cookies and Client-Side Storage Technologies?</h2>
+  <p>
+    Modern web browsers provide multiple technical mechanisms for websites to persist state information locally on a client device without continually transmitting state through URL query parameters. Understanding these distinctions ensures you have full visibility over how data is handled on your hardware:
+  </p>
+  <ul>
+    <li>
+      <strong>HTTP Cookies:</strong> Small text files (typically limited to 4 kilobytes per cookie) transmitted between the web server and your browser through standard HTTP request and response headers (<code>Set-Cookie</code>). Once placed, your browser returns these tokens with subsequent HTTP requests directed to the origin domain (or specified third-party ad networks). Cookies can be either "Session Cookies" (which are automatically destroyed the moment you terminate your web browser session) or "Persistent Cookies" (which remain stored on your hard drive until a predetermined expiration timestamp is reached or until you manually clear your browsing data).
+    </li>
+    <li>
+      <strong>Web Storage (<code>localStorage</code> &amp; <code>sessionStorage</code>):</strong> High-capacity client-side key-value storage mechanisms introduced in HTML5 (capable of storing 5 to 10 megabytes per domain). Unlike HTTP cookies, web storage items are never automatically appended to outgoing HTTP request headers sent to our web servers. They remain completely sandboxed inside your local browser client until JavaScript explicitly reads or deletes them. We utilize <code>localStorage</code> exclusively for client-side user preferences such as your Dark/Light visual theme choice.
+    </li>
+    <li>
+      <strong>Security &amp; Challenge Tokens (Cloudflare Turnstile):</strong> Ephemeral cryptographic tokens generated during automated bot mitigation challenges. These verify that an incoming request originates from an authentic human user navigating a genuine browser rather than an automated scraping script or malicious DDoS botnet.
+    </li>
+  </ul>
+
+  <h2>2. The Legal Basis for Cookie Processing</h2>
+  <p>
+    Under European Union and international data protection jurisprudence, cookies and storage technologies are categorized based on whether user consent is legally mandated prior to placement:
+  </p>
+  <ul>
+    <li>
+      <strong>Strictly Necessary &amp; Security Exemption:</strong> Under Article 5(3) of the ePrivacy Directive and Section 1798.100 of the CCPA, technical storage strictly required to deliver an information society service explicitly requested by the end user does not require prior opt-in consent. This includes Cloudflare bot mitigation headers, rate limiting cookies, and transient CSRF protection tokens. Without these, our web servers could not securely transmit media streams or defend against denial-of-service disruptions.
+    </li>
+    <li>
+      <strong>Prior Explicit Consent for Advertising &amp; Tracking:</strong> Non-essential tracking mechanisms—specifically commercial advertising cookies delivered via Google AdSense and third-party advertising exchanges—are legally conditioned upon your affirmative, informed, and freely given consent. We enforce Google Consent Mode v2 to ensure that marketing and ad-personalization cookies remain strictly inactive by default until you interact with our consent interface.
+    </li>
+  </ul>
+
+  <h2>3. Detailed Categorization of Storage Used on This Platform</h2>
+  <p>
+    We maintain a lean, performance-optimized software architecture. Unlike legacy web converters that burden user browsers with dozens of hidden tracking beacons, our inventory is divided into four clearly defined operational tiers:
+  </p>
+
+  <h3>Tier 1: Strictly Necessary &amp; Security Storage</h3>
+  <p>
+    These items are essential for the technical stability, operational security, and load-balanced routing of our cloud infrastructure. Because our service cannot safely function without them, these tokens cannot be deactivated through our on-site settings, though you may block them via your browser configuration:
+  </p>
+  <ul>
+    <li>
+      <strong>Cloudflare Bot Mitigation (<code>__cf_bm</code>):</strong> Issued by our global edge delivery partner (Cloudflare Inc.) to manage incoming HTTP traffic, distinguish legitimate human browsers from malicious automated botnets, and preserve server stability during high-volume traffic spikes. Duration: 30 minutes.
+    </li>
+    <li>
+      <strong>Cloudflare Turnstile Verification:</strong> An ephemeral verification challenge token created when completing bot challenges during rapid video stream extraction. This protects our backend conversion cluster from automated resource exhaustion. Duration: Ephemeral session.
+    </li>
+  </ul>
+
+  <h3>Tier 2: Functional &amp; Preference Storage</h3>
+  <p>
+    Functional storage allows our web application to remember choices you make during your visit, saving you from having to reconfigure your personal settings on every page reload:
+  </p>
+  <ul>
+    <li>
+      <strong>Visual Theme Preference (<code>theme</code> in <code>localStorage</code>):</strong> Remembers whether you selected Dark Mode (our default high-contrast theme) or Light Mode across page transitions. If this key is cleared, the platform automatically defaults to your operating system's system-level color preference (via the CSS <code>prefers-color-scheme</code> media query). Duration: Persistent until browser cache is cleared.
+    </li>
+    <li>
+      <strong>Cookie Choice Record (<code>user_cookie_consent</code> in <code>localStorage</code>):</strong> Records whether you accepted or declined non-essential advertising cookies when the consent notification appeared. This prevents the banner from intrusively reappearing on every subsequent page you view. Duration: 365 days.
+    </li>
+  </ul>
+
+  <h3>Tier 3: Performance &amp; Privacy-Preserving Analytics</h3>
+  <p>
+    We collect minimal, privacy-preserving aggregate telemetry at the cloud edge (Cloudflare Web Analytics) to monitor aggregate traffic patterns, regional bandwidth consumption, and conversion success rates. This analytics engine operates completely cookie-free: it does not place persistent tracking files on your device, does not fingerprint your hardware, and does not monitor your cross-site web browsing activities.
+  </p>
+
+  <h3>Tier 4: Advertising &amp; Google AdSense Cookies</h3>
+  <p>
+    To keep <strong>YouTube to MP4</strong> 100% free for all users worldwide without requiring paid subscriptions, paywalls, or user account registrations, we partner with Google AdSense to display contextual web advertisements.
+  </p>
+  <p>
+    When you provide affirmative consent through our consent controls, Google and its certified vendor partners may place HTTP cookies (such as <code>__gads</code>, <code>__gpi</code>, and <code>IDE</code>) to measure advertising performance, prevent the same advertisement from repeatedly displaying to the same visitor, and serve ads tailored to your general browsing interests. If you reject non-essential cookies, Google AdSense is dynamically instructed via Google Consent Mode v2 to deliver non-personalized advertisements (NPA) that rely solely on page context rather than personal user profiles.
+  </p>
+
+  <h2>4. Comprehensive Storage &amp; Cookie Inventory</h2>
+  <p>
+    The following technical table provides an exhaustive index of all identifiers and storage items that may be utilized across our platform:
+  </p>
+
   <div class="content-table-wrapper">
     <table class="content-table">
       <thead>
         <tr>
-          <th>Key / Cookie</th>
-          <th>Type</th>
-          <th>Duration</th>
-          <th>Purpose</th>
+          <th>Identifier / Key</th>
+          <th>Provider</th>
+          <th>Storage Type</th>
+          <th>Standard Duration</th>
+          <th>Category</th>
+          <th>Technical Purpose &amp; Usage</th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <td><code>__cf_bm</code></td>
+          <td>Cloudflare, Inc.</td>
+          <td>HTTP Cookie</td>
+          <td>30 minutes</td>
+          <td>Strictly Necessary</td>
+          <td>Edge bot-management cookie used to mitigate DDoS threats and malicious automated scrapers.</td>
+        </tr>
+        <tr>
+          <td><code>cf_clearance</code></td>
+          <td>Cloudflare, Inc.</td>
+          <td>HTTP Cookie</td>
+          <td>Up to 1 year</td>
+          <td>Strictly Necessary</td>
+          <td>Records successful completion of a Turnstile or Managed Challenge to prevent redundant CAPTCHAs.</td>
+        </tr>
+        <tr>
           <td><code>theme</code></td>
-          <td>localStorage</td>
+          <td>ytubeconvert.com</td>
+          <td>HTML5 localStorage</td>
           <td>Persistent</td>
-          <td>Remembers your preference between Dark Mode and Light Mode.</td>
+          <td>Functional</td>
+          <td>Stores client preference between dark mode and light mode interfaces without server queries.</td>
         </tr>
         <tr>
           <td><code>user_cookie_consent</code></td>
-          <td>localStorage</td>
-          <td>1 year</td>
-          <td>Remembers whether you accepted or rejected non-essential advertising cookies.</td>
+          <td>ytubeconvert.com</td>
+          <td>HTML5 localStorage</td>
+          <td>1 year (365 days)</td>
+          <td>Functional</td>
+          <td>Remembers user decision (accepted/declined) regarding third-party advertising cookies.</td>
         </tr>
         <tr>
-          <td><code>__cf_bm</code> / Turnstile</td>
-          <td>First-Party Cookie</td>
-          <td>30 minutes</td>
-          <td>Cloudflare security token used to distinguish humans from automated spam bots.</td>
-        </tr>
-        <tr>
-          <td>Google AdSense</td>
+          <td><code>__gads</code></td>
+          <td>Google LLC (AdSense)</td>
           <td>Third-Party Cookie</td>
-          <td>Variable</td>
-          <td>Loaded strictly after your explicit consent to render contextual, non-intrusive advertisements.</td>
+          <td>13 months</td>
+          <td>Advertising / Marketing</td>
+          <td>Measures ad interactions, prevents ad fraud, and limits the frequency of identical ad impressions.</td>
+        </tr>
+        <tr>
+          <td><code>__gpi</code></td>
+          <td>Google LLC (AdSense)</td>
+          <td>Third-Party Cookie</td>
+          <td>13 months</td>
+          <td>Advertising / Marketing</td>
+          <td>Collects non-personally identifiable diagnostic signals for publisher ad delivery optimization.</td>
+        </tr>
+        <tr>
+          <td><code>IDE</code> / <code>DSID</code></td>
+          <td>Google / DoubleClick</td>
+          <td>Third-Party Cookie</td>
+          <td>1 to 2 years</td>
+          <td>Targeted Advertising</td>
+          <td>Used to serve targeted advertisements across non-Google websites based on previous web interactions.</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <h2>Managing Your Cookie Preferences</h2>
+  <h2>5. Google Consent Mode v2 Architecture &amp; User Rights</h2>
   <p>
-    You can adjust or revoke your cookie choices at any time by clicking the <a href="#" id="cookie-settings-btn">Cookie Preferences</a> link located in the footer of every page, or by clearing cookies via your browser's settings menu.
+    We have engineered our frontend client to adhere strictly to <strong>Google Consent Mode v2</strong>, Google's advanced compliance standard designed for the European Economic Area (EEA), the United Kingdom, and privacy-conscious jurisdictions worldwide.
   </p>
+  <p>
+    When you first arrive on our website, default consent parameters are automatically initialized to a restricted state across all four primary consent types:
+  </p>
+  <ul>
+    <li><code>ad_storage='denied'</code>: Disallows the storage of advertising-related cookies on your device.</li>
+    <li><code>ad_user_data='denied'</code>: Disallows sending user data to Google for online advertising purposes.</li>
+    <li><code>ad_personalization='denied'</code>: Disallows the use of collected data for personalized remarketing.</li>
+    <li><code>analytics_storage='denied'</code>: Disallows storage of analytics tracking cookies.</li>
+  </ul>
+  <p>
+    Only when an EEA or UK visitor affirmatively selects "Accept All" or activates advertising categories do these parameters dynamically transition to <code>'granted'</code>. If you select "Decline Non-Essential", our scripts immediately transmit anonymous pings to ensure ads are contextual only, without reading or writing persistent profiling identifiers to your browser.
+  </p>
+
+  <h2>6. How to Manage, Block, or Delete Cookies via Browser Settings</h2>
+  <p>
+    In addition to using our website's consent controls, you retain total autonomy over your hardware and software. Every modern web browser provides comprehensive controls enabling you to inspect, block, or delete cookies and site data at any time.
+  </p>
+  <p>
+    Follow these official, step-by-step instructions to configure cookie behavior within your specific web browser:
+  </p>
+
+  <h3>A. Google Chrome (Desktop &amp; Mobile)</h3>
+  <ul>
+    <li><strong>Desktop (Windows / macOS / Linux):</strong> Click the three vertical dots menu in the top-right corner &gt; Select <em>Settings</em> &gt; Navigate to <em>Privacy and security</em> &gt; Click <em>Third-party cookies</em>. Here you can choose to "Block third-party cookies", "Allow third-party cookies", or specify individual site permissions. To purge existing cookies, choose <em>Clear browsing data</em>, check "Cookies and other site data", and select your desired timeframe.</li>
+    <li><strong>Android:</strong> Open Chrome &gt; Tap the three-dot menu &gt; <em>Settings</em> &gt; <em>Site settings</em> &gt; <em>Cookies</em> &gt; Toggle third-party cookie restrictions or block entirely.</li>
+    <li><strong>iOS (iPhone / iPad):</strong> Open iOS <em>Settings</em> &gt; Scroll to <em>Chrome</em> &gt; Toggle <em>Allow Cross-Website Tracking</em> off.</li>
+  </ul>
+
+  <h3>B. Apple Safari (macOS &amp; iOS)</h3>
+  <ul>
+    <li><strong>macOS:</strong> Open Safari &gt; Click <em>Safari</em> in the top menu bar &gt; Choose <em>Settings (Preferences)</em> &gt; Select the <em>Privacy</em> tab &gt; Ensure the checkbox <em>Prevent cross-site tracking</em> is enabled. To remove stored cookies, click <em>Manage Website Data...</em>, search for <code>ytubeconvert.com</code>, and click <em>Remove</em>.</li>
+    <li><strong>iOS (iPhone / iPad):</strong> Open iOS <em>Settings</em> &gt; Tap <em>Safari</em> &gt; Under the <em>Privacy &amp; Security</em> section, turn on <em>Prevent Cross-Site Tracking</em> and optionally enable <em>Block All Cookies</em>.</li>
+  </ul>
+
+  <h3>C. Mozilla Firefox (Desktop &amp; Mobile)</h3>
+  <ul>
+    <li><strong>Desktop:</strong> Click the application menu (three horizontal lines) &gt; Select <em>Settings</em> &gt; Choose <em>Privacy &amp; Security</em> on the left panel &gt; Under <em>Enhanced Tracking Protection</em>, select <em>Standard</em> or <em>Strict</em> mode (which blocks cross-site tracking cookies, cryptominers, and social media trackers by default). To clear cookies, click <em>Clear Data...</em> under the Cookies and Site Data heading.</li>
+    <li><strong>Mobile:</strong> Open Firefox &gt; Tap menu &gt; <em>Settings</em> &gt; <em>Enhanced Tracking Protection</em> &gt; Select <em>Strict</em>.</li>
+  </ul>
+
+  <h3>D. Microsoft Edge (Windows &amp; macOS)</h3>
+  <ul>
+    <li>Click the three dots in the top-right corner &gt; Choose <em>Settings</em> &gt; Navigate to <em>Cookies and site permissions</em> &gt; Click <em>Manage and delete cookies and site data</em> &gt; Toggle <em>Block third-party cookies</em> on. Under <em>Privacy, search, and services</em>, set Tracking Prevention to <em>Balanced</em> or <em>Strict</em>.</li>
+  </ul>
+
+  <h2>7. Browser Privacy Signals: Do Not Track (DNT) &amp; Global Privacy Control (GPC)</h2>
+  <p>
+    Many advanced web browsers and privacy-oriented extensions support automated signals that communicate your privacy preferences directly to web servers upon every HTTP request:
+  </p>
+  <ul>
+    <li>
+      <strong>Global Privacy Control (GPC):</strong> GPC is an emerging browser specification legally recognized under the California Consumer Privacy Act (CCPA/CPRA) and various international privacy authorities. When our web application detects a valid GPC signal (<code>navigator.globalPrivacyControl === true</code>) transmitted by your browser, we automatically interpret this signal as a binding opt-out request for third-party targeted advertising cookies.
+    </li>
+    <li>
+      <strong>Do Not Track (DNT):</strong> DNT is an older HTTP header (<code>DNT: 1</code>) indicating a user's request for third-party trackers to disable cross-site monitoring. While DNT lacks universal legal enforcement standards, our ad-loading architecture honors DNT headers by disabling ad personalization scripts whenever the signal is present.
+    </li>
+  </ul>
+
+  <h2>8. Third-Party Web Advertising Networks &amp; Opt-Out Portals</h2>
+  <p>
+    If you wish to opt out of interest-based, behavioral targeted advertising across thousands of commercial advertising networks simultaneously, you may visit the industry-standard self-regulatory opt-out portals:
+  </p>
+  <ul>
+    <li><strong>Digital Advertising Alliance (DAA) WebChoices Tool:</strong> <a href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer">https://optout.aboutads.info/</a></li>
+    <li><strong>Network Advertising Initiative (NAI) Consumer Opt-Out:</strong> <a href="https://optout.networkadvertising.org/" target="_blank" rel="noopener noreferrer">https://optout.networkadvertising.org/</a></li>
+    <li><strong>European Interactive Digital Advertising Alliance (EDAA - Your Online Choices):</strong> <a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener noreferrer">https://www.youronlinechoices.eu/</a></li>
+    <li><strong>Google Ads Settings Portal:</strong> <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">https://adssettings.google.com/</a></li>
+  </ul>
+
+  <h2>9. What Happens If You Disable All Cookies?</h2>
+  <p>
+    We have engineered <strong>YouTube to MP4</strong> so that our core service remains fully functional even if you configure your web browser to completely block all HTTP cookies, third-party cookies, and storage items:
+  </p>
+  <ul>
+    <li>
+      <strong>Conversion Functionality Unaffected:</strong> You can continue to paste YouTube URLs, inspect available video/audio streams, select resolutions (from 360p and 720p up to 1080p Full HD and 4K UHD), and download generated MP4 files with 100% operational fidelity. Our video conversion backend does not rely on persistent user cookies to process conversion jobs.
+    </li>
+    <li>
+      <strong>Visual Theme Reset:</strong> If <code>localStorage</code> is blocked, the website will not remember your Dark/Light theme selection between browser restarts, reverting to your operating system's default color scheme on each new page visit.
+    </li>
+    <li>
+      <strong>Repeated Consent Prompts:</strong> Because the preference cookie recording your consent response cannot be stored, our cookie notification bar may reappear during subsequent browsing sessions.
+    </li>
+  </ul>
+
+  <h2>10. Updates &amp; Amendments to This Cookie Policy</h2>
+  <p>
+    As web standards evolve, new privacy regulations emerge, or we implement architectural modifications to our cloud infrastructure, we may update this Cookie Policy periodically. When changes occur, we will update the "Effective Date" and version reference at the beginning of this document. We encourage users to inspect this page periodically to remain informed about our ongoing data protection practices.
+  </p>
+
+  <h2>11. Contact Our Privacy &amp; Data Protection Team</h2>
+  <p>
+    If you have any questions, comments, or technical inquiries regarding our use of cookies, local storage technologies, or client-side privacy safeguards, please contact our administrative team:
+  </p>
+  <ul>
+    <li><strong>Entity:</strong> YouTube to MP4 Operations</li>
+    <li><strong>Official Privacy &amp; Compliance Email:</strong> <a href="mailto:ytubeconvert@gmail.com?subject=Cookie%20Policy%20Inquiry">ytubeconvert@gmail.com</a></li>
+    <li><strong>Platform Management:</strong> Kamlesh Mohabe, Proprietor | Software Engineer</li>
+    <li><strong>Support &amp; Feedback Portal:</strong> <a href="/contact">https://ytubeconvert.com/contact</a></li>
+  </ul>
 </PageLayout>

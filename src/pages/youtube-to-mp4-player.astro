@@ -13,12 +13,28 @@ const breadcrumbs = [
 
 const faqs: FaqItem[] = [
   {
-    question: "What is the YouTube to MP4 player?",
-    answer: "Our YouTube to MP4 player is an HTML5 video playback sandbox embedded into the webpage. It enables you to play, verify audio/video synchronization, scrub timelines, and inspect video quality before committing disk space to download."
+    question: "What is the YouTube to MP4 player and how does it work?",
+    answer: "Our YouTube to MP4 player is an integrated HTML5 video playback sandbox embedded directly into the webpage. When your conversion finishes on our cloud servers, the resulting MP4 container is immediately available to stream directly inside the browser using HTTP 206 Partial Content range requests, allowing you to preview, inspect, and verify the video before saving it to your device."
   },
   {
-    question: "Does the player support fullscreen playback?",
-    answer: "Yes, our player supports native HTML5 Fullscreen API, Picture-in-Picture (PiP) mode, and keyboard shortcuts (spacebar for play/pause)."
+    question: "Does the player support fullscreen playback and keyboard shortcuts?",
+    answer: "Yes! Our player supports the native HTML5 Fullscreen API, Picture-in-Picture (PiP) multitasking mode, and universal keyboard shortcuts: Spacebar or K to play/pause, Left/Right arrows to jump 5 seconds backward/forward, Up/Down arrows to adjust volume, F for fullscreen, and M to mute."
+  },
+  {
+    question: "Can I adjust playback speed in the in-browser video player?",
+    answer: "Yes. The player includes variable playback speed controls ranging from 0.5x (slow motion) to 1.0x (normal), 1.25x, 1.5x, 1.75x, and 2.0x (high-speed review). This is ideal for quickly scanning through long educational lectures or transcribing spoken interviews."
+  },
+  {
+    question: "Why does the player start playing immediately without waiting for the full download?",
+    answer: "Our backend multiplexer applies the MP4 'fast-start' flag (moov atom relocation) to every generated file. This relocates the media index metadata to the very beginning of the file, allowing modern browsers to buffer and play the first few seconds instantly while the remainder streams in the background."
+  },
+  {
+    question: "Does previewing a video in the player consume additional mobile data?",
+    answer: "Previewing streams the video chunks directly from our server cache to your browser. If you decide to hit 'Download MP4' while or after previewing, your browser will typically reuse the already-cached chunks from its internal media cache, minimizing duplicate data usage."
+  },
+  {
+    question: "What should I do if the player displays a black screen or plays audio without video?",
+    answer: "A black screen with audio typically indicates that hardware GPU video decoding crashed in your browser. Refresh the page or try disabling 'Hardware Acceleration' in your browser settings (under Settings > System). On older Android devices, switching from 4K to 1080p or 720p will immediately resolve playback issues."
   }
 ];
 ---
@@ -47,21 +63,119 @@ const faqs: FaqItem[] = [
   <VideoPlayer />
 
   <section class="container content-section">
-    <h2>Why an Integrated YouTube to MP4 Player Matters</h2>
+    <h2>Why an Integrated YouTube to MP4 Player Changes the Experience</h2>
     <p>
-      Have you ever waited minutes for a video to download, only to discover that the audio was out of sync, the quality was blurry, or you grabbed the wrong file? Our integrated <strong>YouTube to MP4 player</strong> solves this forever.
+      Have you ever waited minutes for an online video converter to process a long file, downloaded a multi-gigabyte file to your phone or laptop, only to open it and discover that the audio was completely out of sync, the visual quality was heavily compressed, or you accidentally converted the wrong segment?
     </p>
     <p>
-      As soon as our cloud engine finishes converting your requested video stream, the file is ready to be piped into the player above. You can:
+      Traditional video converter sites treat file delivery as a blind, one-way transaction: you click convert, wait, download blindly, and hope for the best. Our <strong>YouTube to MP4 player</strong> fundamentally changes this dynamic. Built on modern HTML5 media streaming standards, our integrated player lets you inspect, scrub, and verify your converted video file right on this page before committing precious disk space to a permanent download.
+    </p>
+
+    <h3>How Our HTML5 In-Browser Video Player Works Under the Hood</h3>
+    <p>
+      Our in-browser player is not an embedded YouTube iframe—it is a true, native HTML5 video sandbox connected directly to our high-speed cloud media cache. Here is the technical breakdown of how it operates:
     </p>
     <ul>
-      <li><strong>Verify Audio/Video Sync:</strong> Confirm that speech accurately aligns with mouth movements with millisecond accuracy.</li>
-      <li><strong>Check Visual Quality:</strong> Verify that text, diagrams, and fine textures are crystal clear before saving large 1080p or 4K files to your smartphone or laptop.</li>
-      <li><strong>Scrub the Timeline:</strong> Skip directly to the key segment you need.</li>
-      <li><strong>Instant Playback without Media Software:</strong> Great on public computers or Chromebooks where third-party media players are restricted.</li>
+      <li><strong>HTTP 206 Partial Content Streaming:</strong> Our backend streaming gateway supports byte-range requests (RFC 7233). When you press play, your browser does not need to wait for the entire 500MB or 1.5GB video file to transfer. It requests only the initial 2MB chunk required to render the opening frames and begin playback in less than 200 milliseconds.</li>
+      <li><strong>Fast-Start Metadata (Moov Atom Placement):</strong> In unoptimized MP4 files, the header index (moov atom) is written at the end of the file. Our FFmpeg multiplexer moves this header to the very start of the byte stream, enabling instant timeline scrubbing and zero-delay playback.</li>
+      <li><strong>Native GPU Hardware Acceleration:</strong> Because our player renders standard H.264 video with AAC audio, your computer or phone's dedicated graphics silicon (Intel Iris, Apple M-series, Nvidia RTX, Qualcomm Adreno) renders the video directly on the display panel with minimal CPU load.</li>
+      <li><strong>Zero Third-Party Plugins:</strong> No Flash, no browser extensions, and no external desktop software are needed. It runs universally on WebKit (Apple Safari), Blink (Google Chrome, Microsoft Edge, Brave), and Gecko (Mozilla Firefox).</li>
+    </ul>
+
+    <div class="content-table-wrapper">
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Player Feature</th>
+            <th>Our Integrated Video Player</th>
+            <th>Traditional Converter Sites</th>
+            <th>Embedded YouTube Iframes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Playback Target</strong></td>
+            <td>Actual Converted MP4 Media File</td>
+            <td>No Preview Available (Blind Download)</td>
+            <td>External YouTube Web Stream</td>
+          </tr>
+          <tr>
+            <td><strong>Audio-Video Sync Check</strong></td>
+            <td>Yes (Inspects Final Converted File)</td>
+            <td>Impossible until after download</td>
+            <td>No (Plays original stream, not MP4)</td>
+          </tr>
+          <tr>
+            <td><strong>Timeline Scrubbing</strong></td>
+            <td>Instant HTTP Byte-Range Scrubbing</td>
+            <td>Not Applicable</td>
+            <td>Requires active YouTube buffering</td>
+          </tr>
+          <tr>
+            <td><strong>Picture-in-Picture (PiP)</strong></td>
+            <td>Supported (Native HTML5 PiP API)</td>
+            <td>Not Available</td>
+            <td>Often restricted by player controls</td>
+          </tr>
+          <tr>
+            <td><strong>Privacy &amp; Data Logging</strong></td>
+            <td>Zero Tracking / 15-Min Auto-Purge</td>
+            <td>Third-Party Ad Networks Track IP</td>
+            <td>Google Cookies &amp; Ads Track Views</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key Use Cases for Pre-Download In-Browser Video Preview</h3>
+    <p>
+      Having immediate in-browser playback provides immense practical value across diverse workflows:
+    </p>
+    <ul>
+      <li><strong>Verifying Audio-Video Synchronization:</strong> Video editors and educators frequently encounter files with audio drift. Previewing a talking-head interview in our player lets you verify that lip movements and spoken audio are tightly synchronized down to the millisecond.</li>
+      <li><strong>Inspecting Fine Visual Details:</strong> When converting technical programming tutorials, architectural CAD walkthroughs, or mathematical lectures, you need to be certain that small text, code snippets, and fine diagrams are legible before archiving the video.</li>
+      <li><strong>Verifying Aspect Ratio on YouTube Shorts:</strong> Confirm that vertical 9:16 Shorts have not been stretched, distorted, or pillar-boxed with unwanted black side bars.</li>
+      <li><strong>Immediate Consumption on Public Terminals:</strong> If you are working on a university computer, library terminal, or borrowed workstation where downloading files to local storage is restricted by system policy, you can watch the entire converted video directly inside your browser window.</li>
+    </ul>
+
+    <h3>Full Keyboard Shortcuts Guide for Power Users</h3>
+    <p>
+      Our video player includes intuitive keyboard controls designed for accessibility and productivity:
+    </p>
+    <ul>
+      <li><strong>Spacebar or K:</strong> Toggle Play / Pause instantly.</li>
+      <li><strong>Left Arrow (&larr;):</strong> Jump backward 5 seconds in the timeline.</li>
+      <li><strong>Right Arrow (&rarr;):</strong> Jump forward 5 seconds in the timeline.</li>
+      <li><strong>J:</strong> Rewind 10 seconds.</li>
+      <li><strong>L:</strong> Fast-forward 10 seconds.</li>
+      <li><strong>Up Arrow (&uarr;):</strong> Increase playback volume by 5%.</li>
+      <li><strong>Down Arrow (&darr;):</strong> Decrease playback volume by 5%.</li>
+      <li><strong>M:</strong> Toggle audio mute / unmute.</li>
+      <li><strong>F:</strong> Enter or exit Fullscreen mode.</li>
+      <li><strong>P:</strong> Toggle Picture-in-Picture (PiP) floating window.</li>
+      <li><strong>0 through 9:</strong> Jump directly to 0% through 90% of the video duration.</li>
+    </ul>
+
+    <h3>Cross-Browser and Multi-Device Compatibility</h3>
+    <p>
+      Our player is built strictly upon modern W3C open web standards. It requires zero configuration and adapts automatically to your screen size:
+    </p>
+    <ul>
+      <li><strong>Apple iOS &amp; iPadOS (Safari):</strong> Full native touch controls with support for iOS Picture-in-Picture, allowing you to float the video while browsing other web pages or taking notes.</li>
+      <li><strong>Google Android (Chrome &amp; Samsung Internet):</strong> Responsive full-screen mobile playback with native orientation locking and Bluetooth audio synchronization.</li>
+      <li><strong>Desktop Workstations (macOS, Windows, Linux):</strong> High-DPI Retina and 4K display scaling with crisp UI controls and smooth volume attenuation.</li>
+    </ul>
+
+    <h3>Troubleshooting In-Browser Playback Questions</h3>
+    <p>
+      If you experience an issue while attempting to preview a converted video, these quick tips will resolve the problem immediately:
+    </p>
+    <ul>
+      <li><strong>Audio Plays but Screen is Black:</strong> This typically indicates that your browser's GPU hardware acceleration encountered a temporary driver glitch. A quick browser restart or disabling "Hardware Acceleration" under Settings &gt; System will immediately restore video rendering.</li>
+      <li><strong>Video Buffers Repeatedly:</strong> If your network connection is fluctuating, pause the video for 3 to 5 seconds to allow the browser to pre-buffer the upcoming byte ranges, or select 720p for a lighter data footprint.</li>
+      <li><strong>Fullscreen Button is Inactive:</strong> In certain restricted browser environments (such as some in-app web views inside Instagram or Facebook), the native Fullscreen API is disabled. Open the link directly in standard Safari or Chrome to unlock full-screen mode.</li>
     </ul>
   </section>
 
-  <FeatureCards />
   <FaqAccordion items={faqs} />
 </BaseLayout>
