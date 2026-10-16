@@ -35,47 +35,47 @@ const homeJsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://ytubeconvert.com/#website",
+      "@id": "https://ytubeconvert.site/#website",
       "name": "YouTube to MP4",
-      "url": "https://ytubeconvert.com",
+      "url": "https://ytubeconvert.site",
       "description": "Convert YouTube to MP4 in high-definition 1080p and 4K quality online.",
       "publisher": {
-        "@id": "https://ytubeconvert.com/#organization"
+        "@id": "https://ytubeconvert.site/#organization"
       },
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://ytubeconvert.com/convert-youtube-to-mp4?url={search_term_string}",
+        "target": "https://ytubeconvert.site/convert-youtube-to-mp4?url={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     },
     {
       "@type": "Organization",
-      "@id": "https://ytubeconvert.com/#organization",
+      "@id": "https://ytubeconvert.site/#organization",
       "name": "YouTube to MP4",
-      "url": "https://ytubeconvert.com",
+      "url": "https://ytubeconvert.site",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://ytubeconvert.com/favicon.svg"
+        "url": "https://ytubeconvert.site/favicon.svg"
       },
       "founder": {
-        "@id": "https://ytubeconvert.com/#author"
+        "@id": "https://ytubeconvert.site/#author"
       }
     },
     {
       "@type": "Person",
-      "@id": "https://ytubeconvert.com/#author",
+      "@id": "https://ytubeconvert.site/#author",
       "name": "Kamlesh Mohabe",
       "jobTitle": "Lead Multimedia Software Engineer",
-      "url": "https://ytubeconvert.com/about",
+      "url": "https://ytubeconvert.site/about",
       "sameAs": [
         "https://github.com/ytubeconvert"
       ]
     },
     {
       "@type": "WebApplication",
-      "@id": "https://ytubeconvert.com/#webapp",
+      "@id": "https://ytubeconvert.site/#webapp",
       "name": "Convert YouTube to MP4",
-      "url": "https://ytubeconvert.com",
+      "url": "https://ytubeconvert.site",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All (Web Browser, Windows, macOS, Android, iOS, Linux)",
       "offers": {
@@ -84,16 +84,16 @@ const homeJsonLd = {
         "priceCurrency": "USD"
       },
       "author": {
-        "@id": "https://ytubeconvert.com/#author"
+        "@id": "https://ytubeconvert.site/#author"
       },
       "creator": {
-        "@id": "https://ytubeconvert.com/#author"
+        "@id": "https://ytubeconvert.site/#author"
       },
       "description": "Free online video converter to convert YouTube to MP4 in 1080p Full HD and 4K Ultra HD quality with an integrated video preview player."
     },
     {
       "@type": "FAQPage",
-      "@id": "https://ytubeconvert.com/#faq",
+      "@id": "https://ytubeconvert.site/#faq",
       "mainEntity": homeFaqs.map((faq) => ({
         "@type": "Question",
         "name": faq.question,
@@ -110,7 +110,7 @@ const homeJsonLd = {
 <BaseLayout
   title="Convert YouTube to MP4 - Free 1080p & 4K Video Converter"
   description="Convert YouTube to MP4 in 1080p Full HD and 4K quality for free. Fast, browser-based online video converter with instant preview and no software installation."
-  canonical="https://ytubeconvert.com/"
+  canonical="https://ytubeconvert.site/"
   jsonLd={homeJsonLd}
 >
   <!-- Above the fold: Hero with typing animation & converter widget -->

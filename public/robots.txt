@@ -5,8 +5,8 @@ Disallow: /temp/
 Disallow: /_temp/
 
 # Host configuration
-Host: https://ytubeconvert.com
+Host: https://ytubeconvert.site
 
 # Sitemap Index
-Sitemap: https://ytubeconvert.com/sitemap.xml
-Sitemap: https://ytubeconvert.com/sitemap-index.xml
+Sitemap: https://ytubeconvert.site/sitemap.xml
+Sitemap: https://ytubeconvert.site/sitemap-index.xml

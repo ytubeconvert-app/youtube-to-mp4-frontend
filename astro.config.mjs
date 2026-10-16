@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://ytubeconvert.com',
+  site: 'https://ytubeconvert.site',
   output: 'static',
   compressHTML: true,
   build: {
