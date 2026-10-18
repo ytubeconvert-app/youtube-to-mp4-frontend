@@ -1,0 +1,110 @@
+---
+import { localizedGuides } from '../data/localizedContent';
+import type { SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+const guide = localizedGuides[lang] || localizedGuides.es;
+---
+
+<section class="container content-section" style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+  <!-- Author & Reviewer Verification Box -->
+  <div class="content-author-box">
+    <div class="content-author-avatar">KM</div>
+    <div class="content-author-info">
+      <span class="content-author-name">{guide.authorTitle}</span>
+      <span class="content-author-role">{guide.authorRole}</span>
+    </div>
+  </div>
+
+  <h2>{guide.guideTitle}</h2>
+  <p style="font-size: 1.05rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 1.5rem;">
+    {guide.guideSubtitle}
+  </p>
+
+  <h2>{guide.overviewHeading}</h2>
+  <p>{guide.overviewP1}</p>
+  <p>{guide.overviewP2}</p>
+
+  <h2>{guide.specsHeading}</h2>
+  <p>{guide.specsDesc}</p>
+  <div class="content-table-wrapper" style="margin: 1.5rem 0;">
+    <table class="content-table">
+      <thead>
+        <tr>
+          {guide.specCols.map((col) => (
+            <th>{col}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {guide.specRows.map((row) => (
+          <tr>
+            <td><strong>{row[0]}</strong></td>
+            <td>{row[1]}</td>
+            <td>{row[2]}</td>
+            <td>{row[3]}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>{guide.devicesHeading}</h2>
+  <p>{guide.devicesDesc}</p>
+  <div class="responsive-card-grid" style="margin: 1.75rem 0;">
+    {guide.devices.map((d) => (
+      <div class="step-card">
+        <h3 style="font-size: 1.1rem; color: var(--accent); margin-bottom: 0.5rem;">{d.name}</h3>
+        <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary);">{d.desc}</p>
+      </div>
+    ))}
+  </div>
+
+  <h2>{guide.workflowHeading}</h2>
+  <p>{guide.workflowDesc}</p>
+  <div style="display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;">
+    {guide.steps.map((s) => (
+      <div class="step-card" style="padding: 1rem 1.25rem;">
+        <h3 style="font-size: 1.05rem; margin-bottom: 0.35rem; color: var(--text-primary);">{s.title}</h3>
+        <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin: 0;">{s.desc}</p>
+      </div>
+    ))}
+  </div>
+
+  <h2>{guide.codecHeading}</h2>
+  <p>{guide.codecP1}</p>
+  <p>{guide.codecP2}</p>
+
+  <h2>{guide.legalHeading}</h2>
+  <p>{guide.legalP1}</p>
+  <p>{guide.legalP2}</p>
+
+  <h2>{guide.troubleHeading}</h2>
+  <p>{guide.troubleP1}</p>
+  <div class="responsive-card-grid" style="margin: 1.5rem 0;">
+    {guide.troubleItems.map((item) => (
+      <div class="step-card">
+        <h3 style="font-size: 1rem; color: var(--warning, #f59e0b); margin-bottom: 0.4rem;">{item.issue}</h3>
+        <p style="font-size: 0.875rem; line-height: 1.5; color: var(--text-secondary);">{item.solution}</p>
+      </div>
+    ))}
+  </div>
+
+  <h2>{guide.faqsHeading}</h2>
+  <div style="display: flex; flex-direction: column; gap: 0.85rem; margin-top: 1.25rem;">
+    {guide.faqs.map((faq) => (
+      <details class="faq-item" style="border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 0.85rem 1.25rem; background: var(--bg-card);">
+        <summary style="font-weight: 600; cursor: pointer; color: var(--text-primary); font-size: 0.95rem;">
+          {faq.question}
+        </summary>
+        <p style="margin-top: 0.75rem; font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary);">
+          {faq.answer}
+        </p>
+      </details>
+    ))}
+  </div>
+</section>

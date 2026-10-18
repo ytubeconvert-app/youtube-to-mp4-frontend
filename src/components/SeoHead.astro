@@ -21,9 +21,24 @@ const {
   jsonLd
 } = Astro.props;
 
-const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://ytubeconvert.site';
+const siteUrl = 'https://ytubeconvert.site';
 const currentPath = Astro.url.pathname;
-const canonicalUrl = canonical || `${siteUrl}${currentPath}`;
+
+// Enforce strict non-www HTTPS canonical URL
+let rawCanonical = canonical || `${siteUrl}${currentPath}`;
+let cleanCanonical = rawCanonical.split('?')[0].split('#')[0];
+cleanCanonical = cleanCanonical.replace(/^https?:\/\/(?:www\.)?ytubeconvert\.(?:site|com)(?::\d+)?/i, siteUrl);
+if (!cleanCanonical.startsWith(siteUrl)) {
+  if (cleanCanonical.startsWith('/')) {
+    cleanCanonical = `${siteUrl}${cleanCanonical}`;
+  } else {
+    cleanCanonical = `${siteUrl}/${cleanCanonical}`;
+  }
+}
+const parsedUrl = new URL(cleanCanonical);
+const normPath = parsedUrl.pathname === '/' ? '/' : parsedUrl.pathname.replace(/\/+$/, '');
+const canonicalUrl = `${siteUrl}${normPath}`;
+
 const langList = Object.keys(languages) as SupportedLanguage[];
 
 // Check if current route exists in all localized languages
@@ -64,9 +79,12 @@ function getLocalizedUrl(l: SupportedLanguage) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ53L4PF2D"></script>
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-TQ53L4PF2D"></script>
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -74,10 +92,6 @@ function getLocalizedUrl(l: SupportedLanguage) {
 
     gtag('config', 'G-TQ53L4PF2D');
   </script>
-
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <link rel="canonical" href={canonicalUrl} />
 
   <!-- Hreflang alternates for localized pages -->
   {isLocalizedPage && (
@@ -109,6 +123,7 @@ function getLocalizedUrl(l: SupportedLanguage) {
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={`${siteUrl}${image}`} />
+  <meta name="twitter:url" content={canonicalUrl} />
 
   <!-- Speculation Rules: Prefetch on user interaction only -->
   <script type="speculationrules">

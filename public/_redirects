@@ -1,3 +1,12 @@
+# Force canonical non-www domain redirects
+https://www.ytubeconvert.site/* https://ytubeconvert.site/:splat 301!
+http://www.ytubeconvert.site/* https://ytubeconvert.site/:splat 301!
+http://ytubeconvert.site/* https://ytubeconvert.site/:splat 301!
+https://www.ytubeconvert.com/* https://ytubeconvert.site/:splat 301!
+https://ytubeconvert.com/* https://ytubeconvert.site/:splat 301!
+http://www.ytubeconvert.com/* https://ytubeconvert.site/:splat 301!
+http://ytubeconvert.com/* https://ytubeconvert.site/:splat 301!
+
 # 301 Permanent Redirects for canonicalization and variations
 /home / 301
 /index.html / 301
