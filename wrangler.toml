@@ -6,9 +6,9 @@ compatibility_flags = ["nodejs_compat"]
 directory = "./dist"
 
 [vars]
-# Live Render backend API
-PUBLIC_API_URL = "https://youtube-to-mp4-backend.onrender.com"
+# Live Cloudflare Worker backend API
+PUBLIC_API_URL = "https://backend.ytubeconvert.site"
 # Content Security Policy allowed backend endpoint (applied in public/_headers and dist/_headers)
-CSP_BACKEND_URL = "https://youtube-to-mp4-backend.onrender.com"
+CSP_BACKEND_URL = "https://backend.ytubeconvert.site"
 # PUBLIC_TURNSTILE_SITE_KEY = ""
 

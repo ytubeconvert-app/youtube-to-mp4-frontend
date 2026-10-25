@@ -31,7 +31,7 @@ export function initConverterWidget() {
   if (!form || !urlInput || !convertBtn) return;
 
   // Active API base resolution: prefers Vite env / window.API_BASE_URL / live Render backend / port 8787
-  let activeApiBase = (window as any).API_BASE_URL || (import.meta as any).env?.PUBLIC_API_URL || 'https://youtube-to-mp4-backend.onrender.com';
+  let activeApiBase = (window as any).API_BASE_URL || (import.meta as any).env?.PUBLIC_API_URL || 'https://backend.ytubeconvert.site';
   let isApiBaseLocked = false;
   let currentVideoInfo: VideoInfo | null = null;
   const rootEl = document.getElementById('converter-root');
@@ -115,6 +115,8 @@ export function initConverterWidget() {
       (window as any).API_BASE_URL,
       (window as any).RESIDENTIAL_TUNNEL_URL,
       (import.meta as any).env?.PUBLIC_API_URL,
+      'https://backend.ytubeconvert.site',
+      'https://backend.ytubeconvert.site/api',
       'https://youtube-to-mp4-backend.onrender.com',
       'https://youtube-to-mp4-backend.onrender.com/api',
       activeApiBase,
